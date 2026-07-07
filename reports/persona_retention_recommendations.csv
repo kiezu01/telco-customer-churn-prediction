@@ -1,0 +1,3 @@
+Persona_Cluster,Cluster_Label,Dominant_Feature,Interpretation,Retention_Action,Cluster_Size,Mean_SHAP_Contribution
+0,Contract/tenure-sensitive,Contract,Nhóm này nhạy cảm với thời hạn cam kết và sự ổn định lâu dài.,Đề xuất khuyến mãi ký hợp đồng dài hạn và chương trình giữ chân theo giai đoạn.,948,-0.0236
+1,Contract/tenure-sensitive,Contract,Nhóm này nhạy cảm với thời hạn cam kết và sự ổn định lâu dài.,Đề xuất khuyến mãi ký hợp đồng dài hạn và chương trình giữ chân theo giai đoạn.,459,0.0763

@@ -1,0 +1,71 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{balance}
+
+\title{Một Khung Hỗ Trợ Giải Thích Cho Phân Tích Khách Hàng Rời Mạng và Xây Dựng Chính Sách Giữ Chân trong Ngành Viễn Thông}
+
+\author{
+\IEEEauthorblockN{Vũ Trung Kiên}
+\IEEEauthorblockA{Khoa Khoa học Dữ liệu\\Đại học Công nghệ Thông tin\\Thành phố Hồ Chí Minh, Việt Nam\\Email: student@uit.edu.vn}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Dự đoán khách hàng rời mạng là một nhiệm vụ quan trọng trong ngành viễn thông vì việc giữ chân khách hàng hiện hữu thường hiệu quả hơn nhiều so với việc thu hút khách hàng mới. Nghiên cứu này đề xuất một khung phân tích có khả năng giải thích bằng cách kết hợp mô hình Random Forest để dự đoán churn, SHAP để giải thích các yếu tố ảnh hưởng, và thuật toán K-Means trên các giá trị SHAP để xây dựng các persona khách hàng. Điểm mới của nghiên cứu không chỉ nằm ở khả năng dự đoán mà còn ở việc nối liền ba tầng: dự đoán, giải thích và hành động giữ chân khách hàng trong một quy trình thống nhất, có thể dùng cho báo cáo học thuật và hỗ trợ quyết định kinh doanh.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Khách hàng rời mạng, trí tuệ nhân tạo có thể giải thích, SHAP, phân cụm, viễn thông, giữ chân khách hàng.
+\end{IEEEkeywords}
+
+\section{Giới thiệu}
+Khách hàng rời mạng là một thách thức lớn đối với các nhà cung cấp dịch vụ viễn thông vì chi phí mất khách hàng thường cao hơn nhiều so với chi phí giữ chân khách hàng. Nhiều nghiên cứu trước đây chủ yếu tập trung vào hiệu suất dự đoán như độ chính xác hoặc F1-score, nhưng lại thiếu khả năng giải thích vì sao một khách hàng có nguy cơ rời mạng. Điều này làm giảm tính ứng dụng của các mô hình trong việc xây dựng chính sách giữ chân.
+
+\section{Đóng góp mới và ý nghĩa nghiên cứu}
+Điểm mới của nghiên cứu nằm ở việc xây dựng một quy trình hoàn chỉnh có tính giải thích thay vì chỉ dừng ở một mô hình phân loại. Đầu tiên, mô hình Random Forest được huấn luyện để ước lượng xác suất khách hàng rời mạng. Tiếp theo, SHAP được sử dụng để xác định các đặc trưng có ảnh hưởng lớn nhất đến quyết định churn. Cuối cùng, các giá trị SHAP được dùng làm đầu vào cho thuật toán K-Means để xây dựng các persona khách hàng và từ đó đề xuất các chiến lược giữ chân phù hợp như ưu đãi hợp đồng, giảm phí hoặc cải thiện chất lượng dịch vụ. Nhờ đó, kết quả nghiên cứu có thể phục vụ cả mục đích học thuật và mục đích kinh doanh.
+
+\section{Phương pháp}
+Quy trình nghiên cứu được thực hiện theo ba giai đoạn. Đầu tiên, dữ liệu khách hàng được tiền xử lý và chia thành tập huấn luyện và tập kiểm tra. Thứ hai, nhiều mô hình phân loại được so sánh, trong đó Random Forest được chọn vì có hiệu quả dự đoán tốt và phù hợp với phân tích giải thích bằng SHAP. Thứ ba, giá trị SHAP được tính toán và dùng làm đầu vào cho K-Means để tạo ra các persona khách hàng.
+
+\section{Kết quả và thảo luận}
+Kết quả thực nghiệm cho thấy quy trình đề xuất có thể xác định được các yếu tố chính thúc đẩy churn và nhóm khách hàng thành các persona dễ hiểu. Mô hình Random Forest được chọn đạt độ chính xác 0.7846, F1-score 0.5524 và AUC 0.8148 trên tập kiểm tra. Phân tích SHAP cho thấy Contract là đặc trưng thống trị, tiếp theo là tenure, OnlineSecurity, TechSupport và TotalCharges. Kết quả này không chỉ là hiện tượng của một nhãn dữ liệu trừu tượng. Trong tập dữ liệu, khách hàng sử dụng gói tháng-tháng có tỷ lệ churn lên tới 0.427, cao hơn rõ rệt so với gói một năm là 0.113 và gói hai năm là 0.028. Nói cách khác, Contract có thể xem như một đại diện ngắn gọn cho mức độ cam kết của khách hàng, chi phí chuyển đổi và độ nhạy với giá: những khách hàng có hợp đồng linh hoạt dễ rời mạng hơn, trong khi những khách hàng bị ràng buộc bởi hợp đồng dài hạn có xu hướng ở lại lâu hơn. Các đặc trưng liên quan đến dịch vụ như OnlineSecurity và TechSupport vẫn quan trọng, nhưng chúng mang tính cụ thể hơn và có phần chồng lấn với quyết định hợp đồng ở mức rộng hơn. Quá trình gom cụm tạo ra hai persona với kích thước 948 và 459 khách hàng, cho thấy dữ liệu hiện tại có thể hỗ trợ một phân đoạn khách hàng ở mức khá cơ bản nhưng vẫn có ý nghĩa.
+
+\begin{table}[t]
+\centering
+\caption{Kết quả thực nghiệm chính}
+\label{tab:results_vn}
+\begin{tabular}{lc}
+\hline
+Chỉ số & Giá trị \\ 
+\hline
+Accuracy & 0.7846 \\ 
+F1-score & 0.5524 \\ 
+AUC & 0.8148 \\ 
+Đặc trưng SHAP hàng đầu & Contract \\ 
+Kích thước hai persona & 948 / 459 \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Tuy nhiên, kết quả cũng cho thấy một hạn chế quan trọng: khi tín hiệu churn trong dữ liệu bị chi phối bởi một số đặc trưng có tương quan cao như hợp đồng và thời gian sử dụng, các persona thu được có thể chưa phân tách rõ ràng. Đây là một dấu hiệu cho thấy việc tăng độ phân biệt giữa các nhóm cần thêm dữ liệu, đặc trưng mới hoặc điều chỉnh cách gom cụm trong nghiên cứu tiếp theo.
+
+\section{Kết luận}
+Nghiên cứu này trình bày một khung phân tích khách hàng rời mạng có tính giải thích và có giá trị thực tiễn cho ngành viễn thông. Bằng cách kết hợp dự đoán, giải thích và hoạch định chính sách giữ chân theo persona, nghiên cứu mở ra một hướng tiếp cận mới hơn so với các mô hình truyền thống chỉ dừng ở việc phân loại khách hàng.
+
+\balance
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

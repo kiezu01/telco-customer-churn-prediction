@@ -1,0 +1,3 @@
+Persona_Cluster,Cluster_Size,Dominant_Feature,Cluster_Label,Mean_SHAP_Contribution
+0,948,Contract,Contract/tenure-sensitive,-0.0236
+1,459,Contract,Contract/tenure-sensitive,0.0763

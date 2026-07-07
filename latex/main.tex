@@ -1,0 +1,71 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{balance}
+
+\title{A Hybrid Explainable AI Framework for Customer Churn Prediction and Persona-Based Retention in Telecom}
+
+\author{
+\IEEEauthorblockN{Vũ Trung Kiên}
+\IEEEauthorblockA{Department of Data Science\\University of Information Technology\\Ho Chi Minh City, Vietnam\\Email: student@uit.edu.vn}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Customer churn prediction is a critical task in the telecommunications industry, where retaining existing customers is often more cost-effective than acquiring new ones. This study proposes a hybrid explainable AI framework that combines Random Forest for churn prediction, SHAP for feature-level explanation, and K-Means clustering on SHAP values to construct interpretable customer personas. The novelty of this work is not limited to predictive accuracy; instead, it links prediction, explanation, and retention action in a unified pipeline that can support both academic reporting and practical business decision-making.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Customer churn, explainable AI, SHAP, clustering, telecom, retention.
+\end{IEEEkeywords}
+
+\section{Introduction}
+Customer churn remains one of the most important challenges for telecom providers because the cost of losing a customer is usually higher than the cost of retaining one. Traditional churn studies often focus on predictive performance alone, such as accuracy or F1-score, while providing limited insight into why a customer is likely to leave. This restriction reduces their usefulness for retention planning and managerial decision-making.
+
+\section{Novelty and Contributions}
+The novelty of this study lies in the design of a complete explainable pipeline rather than a single predictive model. First, a Random Forest classifier is trained to estimate churn probability. Second, SHAP values are used to identify the most influential features contributing to churn. Third, these SHAP-based representations are clustered into customer personas, which are then translated into targeted retention strategies such as contract incentives, pricing relief, or service-quality improvement. This creates a bridge between prediction, explanation, and business action.
+
+\section{Methodology}
+The workflow consists of three stages. First, raw customer data are preprocessed and split into training and testing sets. Second, several classification models are compared, and Random Forest is selected because it offers strong predictive performance together with compatibility with SHAP-based interpretability. Third, SHAP values are computed and used as input to K-Means clustering to generate customer personas.
+
+\section{Results and Discussion}
+The experimental results show that the proposed pipeline can identify the main drivers of churn and group customers into interpretable personas. The selected Random Forest model achieved an accuracy of 0.7846, F1-score of 0.5524, and AUC of 0.8148 on the test set. The SHAP analysis indicated that Contract was the dominant feature, followed by tenure, OnlineSecurity, TechSupport, and TotalCharges. This result is not merely a label effect. In the dataset, customers on month-to-month plans show a churn rate of 0.427, compared with 0.113 for one-year contracts and 0.028 for two-year contracts. In other words, Contract acts as a compact proxy for customer commitment, switching cost, and price sensitivity: customers with more flexible plans can leave more easily, while customers locked into longer agreements are more likely to stay. Service-related features such as OnlineSecurity and TechSupport remain important, but they are more specific and partially overlap with the broader contract decision. The clustering step produced two personas with sizes of 948 and 459 customers, respectively, showing that the current data structure supports a coarse but meaningful segmentation.
+
+\begin{table}[t]
+\centering
+\caption{Selected experimental results}
+\label{tab:results}
+\begin{tabular}{lc}
+\hline
+Metric & Value \\ 
+\hline
+Accuracy & 0.7846 \\ 
+F1-score & 0.5524 \\ 
+AUC & 0.8148 \\ 
+Top SHAP feature & Contract \\ 
+Cluster sizes & 948 / 459 \\ 
+\hline
+\end{tabular}
+\end{table}
+
+However, the clustering results also reveal an important limitation: two personas may appear similar when the churn signal in the dataset is dominated by a small number of highly correlated features, especially contract and tenure-related variables. This suggests that the current persona separation is partially constrained by the original feature structure and the amount of discriminative information available in the data. In future work, richer features or larger datasets could improve the distinctiveness of the clusters.
+
+\section{Conclusion}
+This study presents a practical and interpretable framework for telecom churn analysis. By combining prediction, explanation, and persona-based retention planning, it offers a more actionable perspective than traditional churn models that stop at classification performance.
+
+\balance
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
