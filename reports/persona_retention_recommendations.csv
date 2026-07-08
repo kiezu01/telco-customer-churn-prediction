@@ -1,3 +1,3 @@
-Persona_Cluster,Cluster_Label,Dominant_Feature,Interpretation,Retention_Action,Cluster_Size,Mean_SHAP_Contribution
-0,Contract/tenure-sensitive,Contract,Nhóm này nhạy cảm với thời hạn cam kết và sự ổn định lâu dài.,Đề xuất khuyến mãi ký hợp đồng dài hạn và chương trình giữ chân theo giai đoạn.,948,-0.0236
-1,Contract/tenure-sensitive,Contract,Nhóm này nhạy cảm với thời hạn cam kết và sự ổn định lâu dài.,Đề xuất khuyến mãi ký hợp đồng dài hạn và chương trình giữ chân theo giai đoạn.,459,0.0763
+Persona_Cluster,Cluster_Label,Dominant_Theme,Top_Raw_Feature_In_Theme,Interpretation,Retention_Action,Cluster_Size,Cohens_d,Effect_Magnitude
+0,Nhạy cảm chi phí (Cost-sensitive),Cost_Pressure,TotalCharges,Nhóm này bị thúc đẩy mạnh bởi chi phí và áp lực thanh toán.,"Ưu tiên chương trình giảm phí, voucher hoặc gói cước linh hoạt cho nhóm này.",961,-0.4818,small
+1,Nhạy cảm chi phí (Cost-sensitive),Cost_Pressure,TotalCharges,Nhóm này bị thúc đẩy mạnh bởi chi phí và áp lực thanh toán.,"Ưu tiên chương trình giảm phí, voucher hoặc gói cước linh hoạt cho nhóm này.",446,1.0381,large

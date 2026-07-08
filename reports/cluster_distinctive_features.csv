@@ -1,0 +1,3 @@
+Persona_Cluster,Distinctive_Feature,Cohens_d,Effect_Magnitude,Cluster_Mean_SHAP,Top3_Distinctive_Features
+0,tenure,-0.4059,small,-0.0217,"['tenure', 'Contract', 'InternetService']"
+1,tenure,0.8746,large,0.0547,"['tenure', 'Contract', 'InternetService']"
