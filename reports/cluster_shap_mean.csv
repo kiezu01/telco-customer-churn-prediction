@@ -1,3 +1,6 @@
 Persona_Cluster,Cluster_Size,Dominant_Theme,Top_Raw_Feature_In_Theme,Cluster_Label,Cohens_d,Effect_Magnitude,Cluster_Mean_Theme_Score
-0,961,Cost_Pressure,TotalCharges,Nhạy cảm chi phí (Cost-sensitive),-0.4818,small,-0.0292
-1,446,Cost_Pressure,TotalCharges,Nhạy cảm chi phí (Cost-sensitive),1.0381,large,0.0839
+0,230,Service_Quality,OnlineSecurity,Nhạy cảm chất lượng dịch vụ (Service-quality-sensitive),-0.9818,large,-0.1
+1,582,Commitment,Contract,Nhạy cảm hợp đồng/thời hạn (Contract/tenure-sensitive),-0.9883,large,-0.1132
+2,237,Service_Quality,InternetService,Nhạy cảm chất lượng dịch vụ (Service-quality-sensitive),0.8349,large,0.0839
+3,225,Lifestyle_Bundle,,Nhạy cảm gói dịch vụ giải trí (Lifestyle-bundle-sensitive),1.5304,large,0.0312
+4,133,Cost_Pressure,TotalCharges,Nhạy cảm chi phí (Cost-sensitive),2.0427,large,0.1587

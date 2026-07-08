@@ -1,3 +1,6 @@
 Persona_Cluster,Distinctive_Feature,Cohens_d,Effect_Magnitude,Cluster_Mean_SHAP,Top3_Distinctive_Features
-0,Cost_Pressure,-0.4818,small,-0.0292,"['Cost_Pressure', 'Service_Quality', 'Commitment']"
-1,Cost_Pressure,1.0381,large,0.0839,"['Cost_Pressure', 'Service_Quality', 'Commitment']"
+0,Service_Quality,-0.9818,large,-0.1,"['Service_Quality', 'Lifestyle_Bundle', 'Commitment']"
+1,Commitment,-0.9883,large,-0.1132,"['Commitment', 'Service_Quality', 'Cost_Pressure']"
+2,Service_Quality,0.8349,large,0.0839,"['Service_Quality', 'Lifestyle_Bundle', 'Commitment']"
+3,Lifestyle_Bundle,1.5304,large,0.0312,"['Lifestyle_Bundle', 'Service_Quality', 'Commitment']"
+4,Cost_Pressure,2.0427,large,0.1587,"['Cost_Pressure', 'Commitment', 'Service_Quality']"

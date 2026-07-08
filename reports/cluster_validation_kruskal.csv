@@ -1,5 +1,5 @@
 Feature,H_stat,p_value,Epsilon_Squared,Significant_at_0.05,Effect_Size
-Cost_Pressure,641.156,0.0,0.4556,True,large
-Commitment,630.411,0.0,0.448,True,large
-Service_Quality,600.3921,0.0,0.4266,True,large
-Lifestyle_Bundle,164.6006,0.0,0.1164,True,medium
+Cost_Pressure,465.3349,0.0,0.3291,True,large
+Commitment,1031.8568,0.0,0.7331,True,large
+Service_Quality,804.5244,0.0,0.571,True,large
+Lifestyle_Bundle,623.7664,0.0,0.4421,True,large
