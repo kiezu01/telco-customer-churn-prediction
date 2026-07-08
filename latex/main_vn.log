@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.5)  5 JUL 2026 01:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.5)  9 JUL 2026 01:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./latex/main_vn.tex
-(latex/main_vn.tex
+**./main_vn.tex
+(main_vn.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
 (C:\Users\KTV\AppData\Local\Programs\MiKTeX\tex/latex/ieeetran\IEEEtran.cls
@@ -732,8 +732,7 @@ Package: balance 1999/02/23 4.3 (PWD)
 x.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count322
-)
-(D:\UIT_SDH\Ky_3\thay thuan\telco-customer-churn-prediction\latex\main_vn.aux
+) (main_vn.aux
 Package babel Info: 'vietnamese' activates 'vietnamese' shorthands.
 (babel)             Reported on input line 8.
 )
@@ -792,15 +791,12 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package hyperref Info: Link coloring OFF on input line 20.
-
-(D:\UIT_SDH\Ky_3\thay thuan\telco-customer-churn-prediction\latex\main_vn.out)
-(D:\UIT_SDH\Ky_3\thay thuan\telco-customer-churn-prediction\latex\main_vn.out)
+ (main_vn.out) (main_vn.out)
 \@outlinefile=\write3
 \openout3 = `main_vn.out'.
 
-
-[1{C:/Users/KTV/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/KTV/
-AppData/Local/Programs/MiKTeX/fonts/enc/dvips/vntex/t5.enc}
+ [1{C:/Users/KTV/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/KTV
+/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/vntex/t5.enc}
 
 
 ]
@@ -820,8 +816,7 @@ Before submitting the final camera ready copy, remember to:
 Overfull \vbox (1.96495pt too high) has occurred while \output is active []
 
 
-[2]
-(D:\UIT_SDH\Ky_3\thay thuan\telco-customer-churn-prediction\latex\main_vn.aux)
+[2] (main_vn.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
@@ -830,19 +825,18 @@ Package rerunfilecheck Info: File `main_vn.out' has not changed.
 (rerunfilecheck)             Checksum: FBA7451385336D539696397AB6F3A31C;735.
  ) 
 Here is how much of TeX's memory you used:
- 12184 strings out of 467871
- 195093 string characters out of 5419345
+ 12183 strings out of 467871
+ 194689 string characters out of 5419345
  635728 words of memory out of 5000000
  40915 multiletter control sequences out of 15000+600000
  750530 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,8n,79p,1626b,465s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,8n,79p,1620b,465s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/KTV/AppData/Local/Programs/MiKTeX/fonts/type1/vntex/urwvn/utmb8v.pf
 b><C:/Users/KTV/AppData/Local/Programs/MiKTeX/fonts/type1/vntex/urwvn/utmbi8v.p
 fb><C:/Users/KTV/AppData/Local/Programs/MiKTeX/fonts/type1/vntex/urwvn/utmr8v.p
 fb>
-Output written on "D:\UIT_SDH\Ky_3\thay thuan\telco-customer-churn-prediction\l
-atex\main_vn.pdf" (2 pages, 80296 bytes).
+Output written on main_vn.pdf (2 pages, 80296 bytes).
 PDF statistics:
  55 PDF objects out of 1000 (max. 8388607)
  9 named destinations out of 1000 (max. 500000)

@@ -10,7 +10,9 @@
 \usepackage{enumitem}
 \usepackage{balance}
 
-\title{Một Khung Hỗ Trợ Giải Thích Cho Phân Tích Khách Hàng Rời Mạng và Xây Dựng Chính Sách Giữ Chân trong Ngành Viễn Thông}
+\graphicspath{{../reports/figures/}}
+
+\title{Khung Giải Thích Cho Dự Đoán Khách Hàng Rời Mạng và Phân Khúc Giữ Chân Dựa Trên SHAP trong Viễn Thông}
 
 \author{
 \IEEEauthorblockN{Vũ Trung Kiên}
@@ -22,46 +24,183 @@
 \maketitle
 
 \begin{abstract}
-Dự đoán khách hàng rời mạng là một nhiệm vụ quan trọng trong ngành viễn thông vì việc giữ chân khách hàng hiện hữu thường hiệu quả hơn nhiều so với việc thu hút khách hàng mới. Nghiên cứu này đề xuất một khung phân tích có khả năng giải thích bằng cách kết hợp mô hình Random Forest để dự đoán churn, SHAP để giải thích các yếu tố ảnh hưởng, và thuật toán K-Means trên các giá trị SHAP để xây dựng các persona khách hàng. Điểm mới của nghiên cứu không chỉ nằm ở khả năng dự đoán mà còn ở việc nối liền ba tầng: dự đoán, giải thích và hành động giữ chân khách hàng trong một quy trình thống nhất, có thể dùng cho báo cáo học thuật và hỗ trợ quyết định kinh doanh.
+Dự đoán khách hàng rời mạng là một bài toán quan trọng trong viễn thông vì chi phí giữ chân thường thấp hơn đáng kể so với chi phí thu hút khách hàng mới. Bản thảo này đề xuất một quy trình giải thích được gồm ba tầng: dự đoán churn bằng học máy, giải thích bằng SHAP, và phân khúc khách hàng theo các giá trị SHAP để xây dựng persona giữ chân. Trên bộ dữ liệu Telco Customer Churn gồm 7.043 khách hàng, nghiên cứu so sánh tám mô hình phân loại và ghi nhận sự đánh đổi giữa hiệu năng thuần túy và khả năng giải thích. Random Forest được chọn làm mô hình nền tảng cho tầng giải thích, dù Logistic Regression đạt accuracy và AUC nhỉnh hơn một chút trong phép so sánh mô hình. Kết quả SHAP cho thấy Contract, tenure, OnlineSecurity, TechSupport và TotalCharges là các yếu tố ảnh hưởng mạnh nhất. Khi gom cụm trên không gian SHAP theo theme nghiệp vụ, cấu hình tốt nhất đạt silhouette 0.3157 với 5 cụm, tốt hơn 5.16\% so với gom cụm trên đặc trưng thô. Các persona thu được đều có khác biệt thống kê có ý nghĩa và có thể chuyển thành khuyến nghị giữ chân cụ thể.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Khách hàng rời mạng, trí tuệ nhân tạo có thể giải thích, SHAP, phân cụm, viễn thông, giữ chân khách hàng.
+Customer churn, explainable AI, SHAP, clustering, telecom, retention.
 \end{IEEEkeywords}
 
 \section{Giới thiệu}
-Khách hàng rời mạng là một thách thức lớn đối với các nhà cung cấp dịch vụ viễn thông vì chi phí mất khách hàng thường cao hơn nhiều so với chi phí giữ chân khách hàng. Nhiều nghiên cứu trước đây chủ yếu tập trung vào hiệu suất dự đoán như độ chính xác hoặc F1-score, nhưng lại thiếu khả năng giải thích vì sao một khách hàng có nguy cơ rời mạng. Điều này làm giảm tính ứng dụng của các mô hình trong việc xây dựng chính sách giữ chân.
+Rời mạng khách hàng là một trong những vấn đề tốn kém nhất đối với nhà cung cấp dịch vụ viễn thông. Nếu chỉ dừng ở mức phân loại khách hàng có rời mạng hay không, mô hình dự đoán sẽ khó hỗ trợ đội kinh doanh trong việc thiết kế chính sách giữ chân. Do đó, nhu cầu thực tế không chỉ là \emph{dự đoán tốt} mà còn phải \emph{giải thích được} và \emph{hành động được}.
 
-\section{Đóng góp mới và ý nghĩa nghiên cứu}
-Điểm mới của nghiên cứu nằm ở việc xây dựng một quy trình hoàn chỉnh có tính giải thích thay vì chỉ dừng ở một mô hình phân loại. Đầu tiên, mô hình Random Forest được huấn luyện để ước lượng xác suất khách hàng rời mạng. Tiếp theo, SHAP được sử dụng để xác định các đặc trưng có ảnh hưởng lớn nhất đến quyết định churn. Cuối cùng, các giá trị SHAP được dùng làm đầu vào cho thuật toán K-Means để xây dựng các persona khách hàng và từ đó đề xuất các chiến lược giữ chân phù hợp như ưu đãi hợp đồng, giảm phí hoặc cải thiện chất lượng dịch vụ. Nhờ đó, kết quả nghiên cứu có thể phục vụ cả mục đích học thuật và mục đích kinh doanh.
+Các nghiên cứu churn truyền thống thường tối ưu các chỉ số như accuracy hoặc F1-score nhưng chưa trả lời được câu hỏi: yếu tố nào làm khách hàng rời mạng, và nên can thiệp theo hướng nào? Để lấp khoảng trống đó, bản thảo này kết hợp dự đoán, giải thích và phân khúc khách hàng thành một pipeline thống nhất \cite{alam2020customer, lundberg2017unified, breiman2001random}.
+
+\textbf{Đóng góp chính} của nghiên cứu gồm:
+\begin{itemize}[leftmargin=*]
+    \item Xây dựng quy trình so sánh nhiều mô hình churn và chọn mô hình nền tảng phù hợp với giải thích SHAP.
+    \item Xác định các yếu tố ảnh hưởng mạnh nhất đến churn bằng SHAP và mô tả chúng theo ngữ cảnh nghiệp vụ.
+    \item Gom cụm khách hàng trên không gian SHAP theo theme nghiệp vụ để tạo persona giữ chân và đề xuất hành động tương ứng.
+\end{itemize}
+
+\section{Dữ liệu và tiền xử lý}
+Bộ dữ liệu sử dụng là \emph{Telco Customer Churn} công khai, gồm 7.043 khách hàng và 21 thuộc tính gốc. Tỷ lệ churn trong dữ liệu là 26,54\% (1.869 khách hàng rời mạng), cho thấy bài toán mất cân bằng lớp ở mức vừa phải.
+
+Dữ liệu được xử lý theo các bước:
+\begin{itemize}[leftmargin=*]
+    \item Chuyển cột \texttt{TotalCharges} sang kiểu số và loại bỏ các dòng không hợp lệ.
+    \item Loại bỏ \texttt{customerID}.
+    \item Mã hóa các biến phân loại bằng Label Encoding.
+    \item Tạo thêm ba đặc trưng: \texttt{AvgMonthlyCharge}, \texttt{HighCharge}, \texttt{LowTenureHighCharge}.
+    \item Chuẩn hóa các biến số \texttt{tenure}, \texttt{MonthlyCharges}, \texttt{TotalCharges}, \texttt{AvgMonthlyCharge}.
+    \item Chia train/test theo tỉ lệ 80/20 với stratify theo nhãn churn.
+\end{itemize}
+
+Sau tiền xử lý, tập huấn luyện có 5.625 mẫu và tập kiểm tra có 1.407 mẫu. Cách làm này giữ nguyên phân bố nhãn và giúp các mô hình được đánh giá trên cùng một mặt bằng.
 
 \section{Phương pháp}
-Quy trình nghiên cứu được thực hiện theo ba giai đoạn. Đầu tiên, dữ liệu khách hàng được tiền xử lý và chia thành tập huấn luyện và tập kiểm tra. Thứ hai, nhiều mô hình phân loại được so sánh, trong đó Random Forest được chọn vì có hiệu quả dự đoán tốt và phù hợp với phân tích giải thích bằng SHAP. Thứ ba, giá trị SHAP được tính toán và dùng làm đầu vào cho K-Means để tạo ra các persona khách hàng.
+\subsection{So sánh mô hình dự đoán}
+Tám mô hình được thử nghiệm gồm Logistic Regression, Random Forest, Decision Tree, AdaBoost, SVM tuyến tính, KNN, Naive Bayes và XGBoost. Các chỉ số đánh giá gồm accuracy, precision, recall, F1-score và AUC.
 
-\section{Kết quả và thảo luận}
-Kết quả thực nghiệm cho thấy quy trình đề xuất có thể xác định được các yếu tố chính thúc đẩy churn và nhóm khách hàng thành các persona dễ hiểu. Mô hình Random Forest được chọn đạt độ chính xác 0.7846, F1-score 0.5524 và AUC 0.8148 trên tập kiểm tra. Phân tích SHAP cho thấy Contract là đặc trưng thống trị, tiếp theo là tenure, OnlineSecurity, TechSupport và TotalCharges. Kết quả này không chỉ là hiện tượng của một nhãn dữ liệu trừu tượng. Trong tập dữ liệu, khách hàng sử dụng gói tháng-tháng có tỷ lệ churn lên tới 0.427, cao hơn rõ rệt so với gói một năm là 0.113 và gói hai năm là 0.028. Nói cách khác, Contract có thể xem như một đại diện ngắn gọn cho mức độ cam kết của khách hàng, chi phí chuyển đổi và độ nhạy với giá: những khách hàng có hợp đồng linh hoạt dễ rời mạng hơn, trong khi những khách hàng bị ràng buộc bởi hợp đồng dài hạn có xu hướng ở lại lâu hơn. Các đặc trưng liên quan đến dịch vụ như OnlineSecurity và TechSupport vẫn quan trọng, nhưng chúng mang tính cụ thể hơn và có phần chồng lấn với quyết định hợp đồng ở mức rộng hơn. Quá trình gom cụm tạo ra hai persona với kích thước 948 và 459 khách hàng, cho thấy dữ liệu hiện tại có thể hỗ trợ một phân đoạn khách hàng ở mức khá cơ bản nhưng vẫn có ý nghĩa.
+\subsection{Giải thích bằng SHAP}
+Sau khi chọn mô hình nền tảng, nghiên cứu dùng SHAP để đo đóng góp của từng đặc trưng lên xác suất churn. Giá trị \emph{mean absolute SHAP} được dùng để xếp hạng mức ảnh hưởng toàn cục, đồng thời biểu đồ summary SHAP được dùng để quan sát chiều tác động của từng đặc trưng \cite{lundberg2017unified}.
+
+\subsection{Phân cụm persona trên SHAP theme}
+Để chuyển giải thích thành hành động, các đặc trưng SHAP được gộp thành bốn theme nghiệp vụ:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Cost\_Pressure}: áp lực chi phí và hóa đơn.
+    \item \textbf{Commitment}: mức độ gắn kết và thời hạn hợp đồng.
+    \item \textbf{Service\_Quality}: chất lượng dịch vụ và trải nghiệm kỹ thuật.
+    \item \textbf{Lifestyle\_Bundle}: nhu cầu bundle/tiện ích giải trí.
+\end{itemize}
+
+Do các theme này vẫn có thể tương quan, không gian theme được chuẩn hóa trước khi gom cụm. KMeans sau đó được dùng để tạo persona \cite{macqueen1967some}, còn số cụm được chọn theo silhouette. Cách tiếp cận này nhằm giảm ảnh hưởng của đa cộng tuyến giữa các biến như \texttt{Contract}, \texttt{tenure} và \texttt{AvgMonthlyCharge}, đồng thời giữ được ý nghĩa nghiệp vụ của từng cụm.
+
+\section{Kết quả}
+\subsection{So sánh mô hình}
+Bảng~\ref{tab:model_comparison_vn} trình bày kết quả so sánh tám mô hình. Logistic Regression đạt accuracy và AUC cao nhất trong nhóm thử nghiệm, trong khi Naive Bayes có recall và F1 tốt hơn. Random Forest không phải mô hình tốt nhất theo mọi chỉ số, nhưng được chọn làm nền tảng cho pipeline giải thích vì hỗ trợ TreeExplainer tự nhiên và dễ dùng cho bước phân tích SHAP.
 
 \begin{table}[t]
 \centering
-\caption{Kết quả thực nghiệm chính}
-\label{tab:results_vn}
-\begin{tabular}{lc}
-\hline
-Chỉ số & Giá trị \\ 
-\hline
-Accuracy & 0.7846 \\ 
-F1-score & 0.5524 \\ 
-AUC & 0.8148 \\ 
-Đặc trưng SHAP hàng đầu & Contract \\ 
-Kích thước hai persona & 948 / 459 \\ 
-\hline
-\end{tabular}
+\caption{Kết quả so sánh mô hình}
+\label{tab:model_comparison_vn}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+Mô hình & Accuracy & Precision & Recall & F1 & AUC \\
+\midrule
+Logistic Regression & 0.7903 & 0.6215 & 0.5401 & 0.5780 & 0.8359 \\
+Random Forest & 0.7846 & 0.6172 & 0.5000 & 0.5524 & 0.8148 \\
+Decision Tree & 0.7257 & 0.4845 & 0.5027 & 0.4934 & 0.6554 \\
+AdaBoost & 0.7832 & 0.6062 & 0.5267 & 0.5637 & 0.8341 \\
+SVM (Linear) & 0.7839 & 0.6562 & 0.3930 & 0.4916 & 0.8332 \\
+KNN & 0.7697 & 0.5710 & 0.5374 & 0.5537 & 0.7826 \\
+Naive Bayes & 0.7562 & 0.5332 & 0.6658 & 0.5922 & 0.8114 \\
+XGBoost & 0.7854 & 0.6091 & 0.5374 & 0.5710 & 0.8174 \\
+\bottomrule
+\end{tabular}%
+}
 \end{table}
 
-Tuy nhiên, kết quả cũng cho thấy một hạn chế quan trọng: khi tín hiệu churn trong dữ liệu bị chi phối bởi một số đặc trưng có tương quan cao như hợp đồng và thời gian sử dụng, các persona thu được có thể chưa phân tách rõ ràng. Đây là một dấu hiệu cho thấy việc tăng độ phân biệt giữa các nhóm cần thêm dữ liệu, đặc trưng mới hoặc điều chỉnh cách gom cụm trong nghiên cứu tiếp theo.
+\subsection{Đặc trưng quan trọng theo SHAP}
+Phân tích SHAP cho thấy Contract là đặc trưng quan trọng nhất, tiếp theo là tenure, OnlineSecurity, TechSupport và TotalCharges. Điều này phù hợp với trực giác nghiệp vụ: mức độ cam kết và chất lượng dịch vụ có ảnh hưởng rõ rệt đến quyết định duy trì thuê bao.
+
+\begin{table}[t]
+\centering
+\caption{Top 10 đặc trưng theo mean absolute SHAP}
+\label{tab:shap_top10_vn}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcc}
+\toprule
+Hạng & Đặc trưng & Mean $|$SHAP$|$ \\
+\midrule
+1 & Contract & 0.0794 \\
+2 & tenure & 0.0497 \\
+3 & OnlineSecurity & 0.0382 \\
+4 & TechSupport & 0.0340 \\
+5 & TotalCharges & 0.0326 \\
+6 & InternetService & 0.0275 \\
+7 & MonthlyCharges & 0.0253 \\
+8 & OnlineBackup & 0.0184 \\
+9 & AvgMonthlyCharge & 0.0154 \\
+10 & PaymentMethod & 0.0151 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{shap_summary.png}
+\caption{Tóm tắt SHAP của mô hình nền tảng}
+\label{fig:shap_summary_vn}
+\end{figure}
+
+\subsection{Ablation study cho không gian gom cụm}
+Để kiểm tra việc gom cụm trên dữ liệu nào là phù hợp nhất, nghiên cứu so sánh ba không gian: đặc trưng thô, SHAP theo từng đặc trưng, và SHAP theo theme nghiệp vụ. Kết quả ở Bảng~\ref{tab:ablation_vn} cho thấy SHAP theme cho chất lượng phân cụm tốt nhất.
+
+\begin{table}[t]
+\centering
+\caption{Ablation study cho không gian gom cụm}
+\label{tab:ablation_vn}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+Không gian & k tốt nhất & Silhouette & Davies-Bouldin & Cải thiện so với raw \\
+\midrule
+raw\_feature & 3 & 0.3002 & 1.3141 & - \\
+shap\_value & 2 & 0.3073 & 1.5033 & 2.36\% \\
+shap\_theme & 5 & 0.3157 & 1.0592 & 5.16\% \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{ablation_raw_vs_shap.png}
+\caption{So sánh chất lượng gom cụm giữa ba không gian biểu diễn}
+\label{fig:ablation_vn}
+\end{figure}
+
+Kết quả này cho thấy việc gộp SHAP theo theme không chỉ có ý nghĩa giải thích mà còn giúp cải thiện độ tách biệt giữa các cụm. Đây là bước quan trọng vì persona chỉ hữu ích nếu các nhóm đủ khác biệt để gắn chính sách giữ chân riêng.
+
+\subsection{Persona và khuyến nghị giữ chân}
+Phân cụm trên SHAP theme tạo ra 5 persona với kích thước lần lượt là 230, 582, 237, 225 và 133 khách hàng. Bốn theme đều có khác biệt có ý nghĩa thống kê giữa các persona, với effect size lớn theo Kruskal-Wallis. Điều này xác nhận rằng các cụm không phải là artifact ngẫu nhiên của thuật toán.
+
+\begin{table}[t]
+\centering
+\caption{Tóm tắt persona và hành động giữ chân}
+\label{tab:persona_vn}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{cllcp{2.7cm}}
+\toprule
+ID & Kích thước & Theme chính & Feature nổi bật & Hành động giữ chân \\
+\midrule
+0 & 230 & Service\_Quality & OnlineSecurity & Tăng hỗ trợ kỹ thuật, cải thiện chất lượng mạng và chăm sóc sau bán hàng \\
+1 & 582 & Commitment & Contract & Khuyến mãi ký hợp đồng dài hạn và chương trình giữ chân theo giai đoạn \\
+2 & 237 & Service\_Quality & InternetService & Tăng hỗ trợ kỹ thuật, cải thiện chất lượng mạng và chăm sóc sau bán hàng \\
+3 & 225 & Lifestyle\_Bundle & - & Đề xuất bundle ưu đãi cho streaming và multiple lines \\
+4 & 133 & Cost\_Pressure & TotalCharges & Giảm phí, voucher hoặc gói cước linh hoạt \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+Hai persona cùng thuộc theme \texttt{Service\_Quality} cho thấy cùng một chiến lược giữ chân có thể áp dụng cho nhiều phân khúc con khác nhau, nhưng tín hiệu chi phối ở từng cụm không hoàn toàn giống nhau. Persona lớn nhất là nhóm nhạy cảm với \texttt{Contract}, phù hợp với kết quả churn theo loại hợp đồng: month-to-month có tỷ lệ churn 0.427, cao hơn rõ rệt so với one year 0.113 và two year 0.028. Điều này củng cố kết luận rằng \texttt{Contract} không chỉ là đặc trưng mạnh nhất về mặt SHAP mà còn là proxy tốt cho mức độ cam kết của khách hàng.
+
+\subsection{Diễn giải tổng hợp}
+Từ kết quả thực nghiệm, có thể rút ra ba điểm chính:
+\begin{itemize}[leftmargin=*]
+    \item Churn trong dữ liệu này chịu ảnh hưởng mạnh bởi mức độ cam kết và cấu trúc hợp đồng.
+    \item Chất lượng dịch vụ và áp lực chi phí là hai trục hành vi quan trọng để xây dựng chiến lược giữ chân.
+    \item Gom cụm trên SHAP theme tạo ra persona có ý nghĩa thực tế hơn so với chỉ dùng đặc trưng thô.
+\end{itemize}
 
 \section{Kết luận}
-Nghiên cứu này trình bày một khung phân tích khách hàng rời mạng có tính giải thích và có giá trị thực tiễn cho ngành viễn thông. Bằng cách kết hợp dự đoán, giải thích và hoạch định chính sách giữ chân theo persona, nghiên cứu mở ra một hướng tiếp cận mới hơn so với các mô hình truyền thống chỉ dừng ở việc phân loại khách hàng.
+Bản thảo này trình bày một khung phân tích churn có khả năng giải thích và có thể chuyển thành hành động cho bối cảnh viễn thông. Thay vì dừng ở dự đoán, nghiên cứu nối liền ba bước: dự đoán, giải thích và phân khúc persona. Trên bộ dữ liệu Telco Customer Churn, quy trình đề xuất xác định được các yếu tố quan trọng nhất, tạo ra 5 persona có khác biệt rõ ràng, và suy ra các hành động giữ chân cụ thể cho từng nhóm.
+
+Hướng phát triển tiếp theo là bổ sung dữ liệu hành vi theo thời gian, thử nhiều chiến lược chọn số cụm hơn và đánh giá tác động kinh doanh của từng chính sách giữ chân trên tập dữ liệu thực tế.
 
 \balance
 
