@@ -1,0 +1,9 @@
+Space,k,Silhouette,Davies_Bouldin
+raw_feature,2,0.264,1.5685
+raw_feature,3,0.3002,1.3141
+raw_feature,4,0.2726,1.5664
+raw_feature,5,0.2795,1.543
+shap_value,2,0.3073,1.5033
+shap_value,3,0.2435,1.6735
+shap_value,4,0.2314,1.6217
+shap_value,5,0.2305,1.6387

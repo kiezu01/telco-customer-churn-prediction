@@ -1,0 +1,11 @@
+Feature,H_stat,p_value,Significant_at_0.05
+Contract,592.8451,0.0,True
+tenure,391.6013,0.0,True
+OnlineSecurity,481.2521,0.0,True
+TechSupport,484.3888,0.0,True
+TotalCharges,235.7362,0.0,True
+InternetService,468.4922,0.0,True
+MonthlyCharges,317.5102,0.0,True
+OnlineBackup,280.1455,0.0,True
+AvgMonthlyCharge,324.6219,0.0,True
+PaymentMethod,177.152,0.0,True

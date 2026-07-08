@@ -7,7 +7,8 @@ import shap
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
-
+from sklearn.metrics import davies_bouldin_score
+from scipy.stats import kruskal
 
 def _prepare_shap_values(model, X_test):
     """Compute SHAP values with a tree explainer when possible and fall back to KernelExplainer."""
@@ -86,7 +87,122 @@ def _choose_cluster_count(shap_matrix, min_clusters=2, max_clusters=5):
             best_k = n_clusters
 
     return best_k
+# thêm mới đoạn này
+def _cluster_and_score(data, n_clusters, random_state=42):
+    """Chuẩn hoá dữ liệu, chạy KMeans, trả về nhãn cụm + 2 chỉ số đánh giá độc lập:
+    - Silhouette: càng cao càng tốt (cụm compact & tách biệt), range [-1, 1]
+    - Davies-Bouldin: càng thấp càng tốt (tỷ lệ within/between-cluster distance)
+    Dùng cả 2 chỉ số vì Silhouette có thể bias khi cluster lệch kích thước,
+    trong khi Davies-Bouldin nhạy với cluster overlap hơn.
+    """
+    scaler = StandardScaler()
+    scaled = scaler.fit_transform(data)
+    kmeans = KMeans(n_clusters=n_clusters, random_state=random_state, n_init=20)
+    labels = kmeans.fit_predict(scaled)
+    sil = silhouette_score(scaled, labels)
+    db = davies_bouldin_score(scaled, labels)
+    return labels, sil, db
 
+
+def compare_clustering_spaces(X_test, shap_top, top_idx, k_range=range(2, 6)):
+    """ABLATION STUDY - đóng góp chính của đề tài.
+
+    So sánh chất lượng phân cụm khách hàng khi thực hiện trên 2 không gian:
+    (1) raw_feature : giá trị feature thô sau chuẩn hoá - cách làm PHỔ BIẾN
+        trong các nghiên cứu customer segmentation truyền thống.
+    (2) shap_value   : đóng góp SHAP của từng feature tới xác suất churn -
+        ĐỀ XUẤT của đề tài này, vì nó phản ánh "feature này đẩy khách hàng
+        về phía churn/không-churn bao nhiêu" thay vì chỉ là giá trị thô,
+        giúp cụm phản ánh đúng NGUYÊN NHÂN hành vi thay vì chỉ đặc điểm nhân khẩu học.
+
+    Với mỗi k trong k_range, chạy KMeans độc lập trên từng không gian,
+    ghi nhận đầy đủ Silhouette/Davies-Bouldin để vẽ biểu đồ so sánh theo k,
+    đồng thời chọn ra k tốt nhất (theo Silhouette) riêng cho từng không gian
+    để so sánh kiểu "best-of-each" công bằng.
+    """
+    raw_data = X_test.iloc[:, top_idx]
+
+    rows = []
+    best = {}
+
+    for space_name, data in [('raw_feature', raw_data), ('shap_value', shap_top)]:
+        best[space_name] = None
+        for k in k_range:
+            if k >= len(data):
+                continue
+            labels, sil, db = _cluster_and_score(data, k)
+            rows.append({
+                'Space': space_name,
+                'k': k,
+                'Silhouette': round(sil, 4),
+                'Davies_Bouldin': round(db, 4)
+            })
+            if best[space_name] is None or sil > best[space_name]['Silhouette']:
+                best[space_name] = {
+                    'k': k, 'Silhouette': sil,
+                    'Davies_Bouldin': db, 'labels': labels
+                }
+
+    comparison_df = pd.DataFrame(rows)
+    return comparison_df, best
+
+
+def validate_cluster_separation(feature_df, labels, feature_names, alpha=0.05):
+    """Kiểm định Kruskal-Wallis H-test cho từng feature giữa các cụm.
+
+    H0: phân phối feature giống nhau giữa các cụm (cụm KHÔNG thực sự khác biệt
+        về feature đó - chỉ là artifact của thuật toán clustering).
+    Nếu p-value < alpha => bác bỏ H0 => cụm khác biệt có ý nghĩa thống kê.
+
+    Dùng Kruskal-Wallis (phi tham số) thay vì ANOVA vì SHAP values sau
+    chuẩn hoá thường không thỏa giả định phân phối chuẩn / phương sai đồng nhất.
+    Đây là bằng chứng ĐỊNH LƯỢNG bắt buộc phải có trong bài báo để chứng minh
+    persona không phải là "cụm giả" (như trường hợp 2 persona đều dominant
+    bởi cùng 1 feature Contract ở phiên bản pipeline cũ).
+    """
+    results = []
+    df = feature_df.copy()
+    df['_cluster'] = labels
+    for feat in feature_names:
+        groups = [g[feat].values for _, g in df.groupby('_cluster')]
+        stat, p = kruskal(*groups)
+        results.append({
+            'Feature': feat,
+            'H_stat': round(stat, 4),
+            'p_value': round(p, 6),
+            'Significant_at_0.05': p < alpha
+        })
+    result_df = pd.DataFrame(results)
+    pct_significant = round(result_df['Significant_at_0.05'].mean() * 100, 1)
+    return result_df, pct_significant
+
+
+def _save_ablation_plot(comparison_df, reports_dir):
+    """Vẽ biểu đồ Silhouette theo k cho 2 không gian, dùng trực tiếp trong
+    slide trình bày và phần Kết quả thực nghiệm của bài báo."""
+    fig_dir = os.path.join(reports_dir, 'figures')
+    os.makedirs(fig_dir, exist_ok=True)
+
+    fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+    for space_name, marker in [('raw_feature', 'o'), ('shap_value', 's')]:
+        subset = comparison_df[comparison_df['Space'] == space_name]
+        axes[0].plot(subset['k'], subset['Silhouette'], marker=marker, label=space_name)
+        axes[1].plot(subset['k'], subset['Davies_Bouldin'], marker=marker, label=space_name)
+
+    axes[0].set_title('Silhouette Score theo k (càng cao càng tốt)')
+    axes[0].set_xlabel('Số cụm (k)')
+    axes[0].set_ylabel('Silhouette')
+    axes[0].legend()
+
+    axes[1].set_title('Davies-Bouldin Index theo k (càng thấp càng tốt)')
+    axes[1].set_xlabel('Số cụm (k)')
+    axes[1].set_ylabel('Davies-Bouldin')
+    axes[1].legend()
+
+    plt.tight_layout()
+    plt.savefig(os.path.join(fig_dir, 'ablation_raw_vs_shap.png'), bbox_inches='tight')
+    plt.close()
+# end thêm mới đoạn này
 
 def _label_cluster(feature_name):
     """Create readable cluster labels from dominant SHAP features."""
@@ -114,15 +230,45 @@ def perform_shap_and_clustering(data_path, models_dir, reports_dir):
 
     _save_global_plots(shap_values, X_test, top_idx, top_features, reports_dir)
 
-    print("Performing KMeans clustering on the most important SHAP features...")
+    # print("Performing KMeans clustering on the most important SHAP features...")
+    # shap_top = shap_values[:, top_idx]
+    # n_clusters = _choose_cluster_count(shap_top)
+    # scaler = StandardScaler()
+    # scaled = scaler.fit_transform(shap_top)
+
+    # kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=20)
+    # clusters = kmeans.fit_predict(scaled)
+    
     shap_top = shap_values[:, top_idx]
-    n_clusters = _choose_cluster_count(shap_top)
-    scaler = StandardScaler()
-    scaled = scaler.fit_transform(shap_top)
 
-    kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=20)
-    clusters = kmeans.fit_predict(scaled)
+    # ===== ABLATION STUDY: SHAP-space vs Raw-feature-space clustering =====
+    print("Chạy ablation study: SHAP-space vs Raw-feature-space clustering...")
+    comparison_df, best = compare_clustering_spaces(X_test, shap_top, top_idx, k_range=range(2, 6))
+    comparison_df.to_csv(os.path.join(reports_dir, 'ablation_raw_vs_shap.csv'), index=False)
+    _save_ablation_plot(comparison_df, reports_dir)
 
+    improvement_pct = round(
+        (best['shap_value']['Silhouette'] - best['raw_feature']['Silhouette'])
+        / abs(best['raw_feature']['Silhouette']) * 100, 2
+    )
+    print(f"Best silhouette - raw_feature: {best['raw_feature']['Silhouette']:.4f} (k={best['raw_feature']['k']})")
+    print(f"Best silhouette - shap_value : {best['shap_value']['Silhouette']:.4f} (k={best['shap_value']['k']})")
+    print(f"Cải thiện của SHAP-space so với raw-feature-space: {improvement_pct}%")
+
+    # Dùng kết quả tốt nhất từ SHAP-space (đề xuất của đề tài) làm persona chính thức
+    n_clusters = best['shap_value']['k']
+    clusters = best['shap_value']['labels']
+
+    # ===== VALIDATION: kiểm định thống kê cho cụm SHAP đã chọn =====
+    shap_top_df = pd.DataFrame(shap_top, columns=top_features)
+    validation_df, pct_significant = validate_cluster_separation(
+        shap_top_df, clusters, top_features
+    )
+    validation_df.to_csv(os.path.join(reports_dir, 'cluster_validation_kruskal.csv'), index=False)
+    print(f"{pct_significant}% feature có khác biệt ý nghĩa thống kê (p<0.05) giữa các cụm SHAP.")
+    # =========================================================================
+
+    # old here
     X_test_clustered = X_test.copy()
     X_test_clustered['Persona_Cluster'] = clusters
     X_test_clustered.to_csv(os.path.join(reports_dir, 'customer_personas_shap.csv'), index=False)
@@ -188,6 +334,14 @@ def perform_shap_and_clustering(data_path, models_dir, reports_dir):
 
     with open(os.path.join(reports_dir, 'persona_retention_recommendations.md'), 'w', encoding='utf-8') as fh:
         fh.write('# Persona-based retention recommendations\n\n')
+        fh.write('## Ablation Study: SHAP-space vs Raw-feature-space Clustering\n\n')
+        fh.write(f"- Silhouette tốt nhất (raw feature space, k={best['raw_feature']['k']}): "
+                 f"{best['raw_feature']['Silhouette']:.4f}\n")
+        fh.write(f"- Silhouette tốt nhất (SHAP value space, k={best['shap_value']['k']}): "
+                 f"{best['shap_value']['Silhouette']:.4f}\n")
+        fh.write(f"- Mức cải thiện: {improvement_pct}%\n")
+        fh.write(f"- {pct_significant}% feature quan trọng có khác biệt ý nghĩa thống kê "
+                 f"(Kruskal-Wallis, p<0.05) giữa các persona trên SHAP space.\n\n")
         if cluster_note:
             fh.write(f"{cluster_note}\n\n")
         for _, row in persona_recommendations_df.iterrows():
