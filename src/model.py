@@ -107,7 +107,7 @@ def train_and_evaluate(data_path, models_dir, reports_dir):
 if __name__ == "__main__":
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     DATA_PATH = os.path.join(BASE_DIR, 'data')
-    MODELS_DIR = os.path.join(BASE_DIR, 'src') # Saving in src for now based on notebook
+    MODELS_DIR = os.path.join(BASE_DIR, 'src')  # Keep the base model next to explain.py for the paper pipeline
     REPORTS_DIR = os.path.join(BASE_DIR, 'reports')
     
     train_and_evaluate(DATA_PATH, MODELS_DIR, REPORTS_DIR)

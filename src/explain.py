@@ -1,4 +1,4 @@
-import os
+﻿import os
 import joblib
 import matplotlib.pyplot as plt
 import numpy as np
@@ -88,7 +88,6 @@ def _choose_cluster_count(shap_matrix, min_clusters=2, max_clusters=5):
             best_k = n_clusters
 
     return best_k
-# thêm mới đoạn này
 def _cluster_and_score(data, n_clusters, random_state=42):
     """Chuẩn hoá dữ liệu, chạy KMeans, trả về nhãn cụm + 2 chỉ số đánh giá độc lập:
     - Silhouette: càng cao càng tốt (cụm compact & tách biệt), range [-1, 1]
@@ -106,7 +105,7 @@ def _cluster_and_score(data, n_clusters, random_state=42):
 
 
 def compare_clustering_spaces(X_test, shap_top, top_idx, k_range=range(2, 6)):
-    """ABLATION STUDY - đóng góp chính của đề tài.
+    """Ablation study for raw features versus per-feature SHAP values.
 
     So sánh chất lượng phân cụm khách hàng khi thực hiện trên 2 không gian:
     (1) raw_feature : giá trị feature thô sau chuẩn hoá - cách làm PHỔ BIẾN
@@ -219,41 +218,7 @@ def _save_ablation_plot(comparison_df, reports_dir):
     plt.tight_layout()
     plt.savefig(os.path.join(fig_dir, 'ablation_raw_vs_shap.png'), bbox_inches='tight')
     plt.close()
-# end thêm mới đoạn này
 
-# hàm vừa thêm mới
-# def _select_distinctive_feature(shap_df, cluster_col='Persona_Cluster'):
-#     """Chọn feature đặc trưng của từng cụm theo mức ĐỘ LỆCH so với các cụm khác
-#     (z-score giữa các cụm), thay vì độ lớn tuyệt đối trong cụm.
-
-#     Lý do: nếu dùng magnitude tuyệt đối, feature có SHAP importance toàn cục
-#     lớn nhất (ở đây là Contract) sẽ LUÔN thắng ở mọi cụm, bất kể cụm đó có
-#     đặc trưng hành vi riêng gì khác - đây chính là nguyên nhân khiến 2 persona
-#     luôn hiện ra giống nhau dù KMeans đã phân cụm đúng về mặt hình học.
-
-#     Cách làm: với mỗi feature, tính mean SHAP theo từng cụm, sau đó chuẩn hoá
-#     (z-score) CÁC MEAN NÀY giữa các cụm với nhau. Cụm nào có z-score cao nhất
-#     ở feature nào => feature đó "nổi bật RIÊNG cho cụm này" so với các cụm khác.
-#     """
-#     cluster_means = shap_df.groupby(cluster_col).mean()  # index=cluster, cols=feature
-
-#     # z-score theo CHIỀU CỤM (axis=0) - so sánh các cụm với nhau trên từng feature
-#     z_scores = (cluster_means - cluster_means.mean()) / cluster_means.std()
-
-#     distinctive = []
-#     for cid in cluster_means.index:
-#         row = z_scores.loc[cid].abs().sort_values(ascending=False)
-#         top_feat = row.index[0]
-#         distinctive.append({
-#             'Persona_Cluster': cid,
-#             'Distinctive_Feature': top_feat,
-#             'Distinctiveness_Zscore': round(z_scores.loc[cid, top_feat], 4),
-#             'Cluster_Mean_SHAP': round(cluster_means.loc[cid, top_feat], 4),
-#             # giữ lại top-3 để làm radar chart mô tả persona đa chiều,
-#             # thay vì gán nhãn theo đúng 1 feature (quá đơn giản hoá)
-#             'Top3_Distinctive_Features': list(row.index[:3])
-#         })
-#     return pd.DataFrame(distinctive)
 def _select_distinctive_feature(shap_df, cluster_col='Persona_Cluster'):
     """Chọn feature đặc trưng của từng cụm bằng standardized mean difference
     (tương tự Cohen's d), CHUẨN HOÁ THEO ĐỘ LỆCH CHUẨN CỦA TOÀN BỘ POPULATION
@@ -647,3 +612,7 @@ if __name__ == "__main__":
     REPORTS_DIR = os.path.join(BASE_DIR, 'reports')
 
     perform_shap_and_clustering(DATA_PATH, MODELS_DIR, REPORTS_DIR)
+
+
+
+

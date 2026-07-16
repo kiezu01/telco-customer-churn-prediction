@@ -1,48 +1,73 @@
-# Telco Customer Churn Prediction - Explainable AI (XAI) & Clustering
+# Telco Customer Churn Prediction - Explainable AI and Retention Personas
 
-Dự án này sử dụng học máy kết hợp với Explainable AI để dự đoán và phân tích nguyên nhân khách hàng rời mạng trong ngành viễn thông.
+Dự án này xây dựng một pipeline giải thích được để dự đoán khách hàng rời mạng trong ngành viễn thông, sau đó chuyển kết quả giải thích thành persona và khuyến nghị giữ chân có thể hành động.
 
 - Tên người làm: Vũ Trung Kiên
 - Mã học viên: 250104011
 - Chuyên đề: IS6502.CH201
 - Giảng viên hướng dẫn: Thầy Nguyễn Đình Thuận
 
-## 🌟 Tính mới của dự án
-Đây không chỉ là một dự án dùng thư viện để dự đoán churn. Nghiên cứu xây dựng một framework mới và có tính ứng dụng cao:
-1. Dự đoán khách hàng rời mạng bằng mô hình Random Forest.
-2. Dùng SHAP để giải thích tại mức đặc trưng, không chỉ đưa ra điểm số mà còn chỉ ra yếu tố nào làm khách hàng có xu hướng rời mạng.
-3. Chuyển các giá trị SHAP thành các persona khách hàng bằng K-Means, rồi từ đó sinh ra các hành động giữ chân có ý nghĩa cho doanh nghiệp.
-4. Tạo ra các đầu ra nghiên cứu có thể dùng trực tiếp cho paper: báo cáo SHAP, bảng persona, đề xuất chiến lược giữ chân.
+## Tóm tắt ngắn
+Quy trình nghiên cứu gồm 3 tầng:
+1. Dự đoán churn bằng nhiều mô hình học máy.
+2. Giải thích mô hình bằng SHAP.
+3. Gom cụm theo SHAP theme để tạo persona và gợi ý chiến lược giữ chân.
 
-Điểm mới cốt lõi là việc kết nối ba tầng: prediction → explanation → retention action. Đây là phần làm nên giá trị thực sự của đề tài, khác với các bài làm chỉ dừng ở việc huấn luyện mô hình. Nó thể hiện một cách tiếp cận có tính nghiên cứu: từ dự đoán, đến diễn giải, rồi tới đề xuất hành động kinh doanh.
+Điểm nhấn của đề tài là không dừng ở accuracy hay F1-score, mà kết nối trực tiếp:
+`prediction -> explanation -> retention action`.
 
-## 📂 Cấu trúc thư mục chính
-- src/preprocess.py: tiền xử lý dữ liệu và tạo tập train/test.
-- src/model.py: huấn luyện và so sánh nhiều mô hình.
-- src/explain.py: tính SHAP và gom cụm personas.
-- docs/PROJECT_OVERVIEW_VN.md: tài liệu mô tả nội dung nghiên cứu.
-- latex/: mẫu LaTeX cho bài báo hội nghị.
+## Kết quả mới nhất
+- Bộ dữ liệu: 7.043 khách hàng, churn rate 26,54%.
+- Mô hình so sánh tốt nhất theo accuracy: Logistic Regression với 0.7903.
+- Mô hình nền tảng cho giải thích: Random Forest với accuracy 0.7846, F1-score 0.5524, AUC 0.8148.
+- Đặc trưng quan trọng nhất theo SHAP: `Contract`, sau đó là `tenure`, `OnlineSecurity`, `TechSupport`, `TotalCharges`.
+- Ablation study tốt nhất: `shap_theme`, silhouette 0.3157, cải thiện 5.16% so với `raw_feature`.
+- Persona cuối cùng: 5 cụm với kích thước 230, 582, 237, 225, 133.
 
-## 🚀 Cài đặt và chạy nhanh
+## Minh họa kết quả
+### SHAP summary
+![SHAP Summary](reports/figures/shap_summary.png)
+
+### Ablation study
+![Ablation Study](reports/figures/ablation_raw_vs_shap.png)
+
+## Cấu trúc thư mục chính
+- `data/`: dữ liệu gốc và dữ liệu train/test đã tiền xử lý.
+- `src/`: mã nguồn tiền xử lý, huấn luyện và giải thích.
+- `reports/`: bảng kết quả, persona và hình SHAP.
+- `docs/`: tài liệu mô tả dự án.
+- `latex/`: bản thảo paper tiếng Việt và tiếng Anh.
+
+## Các file quan trọng
+- `latex/main_vn.tex`: paper tiếng Việt.
+- `latex/main.tex`: paper tiếng Anh.
+- `reports/model_comparison.csv`: bảng so sánh mô hình.
+- `reports/shap_feature_importance.csv`: top feature theo SHAP.
+- `reports/persona_retention_recommendations.csv`: persona và khuyến nghị giữ chân.
+- `reports/presentation_summary.md`: tóm tắt trình bày.
+
+## Chạy nhanh
 ```bash
 pip install -r requirements.txt
 python demo.py
 ```
 
-### Chạy từng bước riêng lẻ
+### Chạy từng bước
 ```bash
 python src/preprocess.py
 python src/model.py
 python src/explain.py
 ```
 
-## 📌 Kết quả đầu ra
-Sau khi chạy xong, hệ thống sẽ tạo:
-- dữ liệu train/test trong thư mục data/
-- mô hình tốt nhất tại src/best_model.pkl
-- bảng so sánh tại reports/model_comparison.csv
-- hình ảnh SHAP tại reports/figures/shap_summary.png
-- báo cáo personas tại reports/customer_personas_shap.csv và reports/cluster_shap_mean.csv
+## Đầu ra sinh ra
+- `data/X_train.csv`, `data/X_test.csv`, `data/y_train.csv`, `data/y_test.csv`
+- `src/best_model.pkl`
+- `reports/model_comparison.csv`
+- `reports/figures/shap_summary.png`
+- `reports/figures/ablation_raw_vs_shap.png`
+- `reports/customer_personas_shap.csv`
+- `reports/cluster_shap_mean.csv`
+- `reports/persona_retention_recommendations.csv`
 
-## 📝 Ghi chú cho bài báo và hội nghị
-Một bộ mẫu LaTeX đã được chuẩn bị tại latex/main.tex để bạn chỉnh sửa tiếp cho bài báo nộp hội nghị.
+## Ghi chú
+Bản thảo paper đã được đồng bộ theo kết quả mới nhất trong `reports/`. Nếu bạn cần phần trình bày, xem thêm `reports/presentation_summary.md`.

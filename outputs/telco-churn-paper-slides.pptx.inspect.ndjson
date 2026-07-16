@@ -1,0 +1,223 @@
+{"kind":"deck","id":"pr/fpfapd","name":"Deck"}
+{"kind":"layout","layoutId":"c3633428-019f-48e3-b098-611ec5575c3d","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"a0efc6a8-0c66-4f96-95c2-f7dd2fd71483","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/vk88q1","slide":1,"title":"Explainable AI for Telecom Churn","textShapes":14}
+{"kind":"shape","id":"sh/x4nap4r6","slide":1,"bbox":[72,38,34,6]}
+{"kind":"textbox","id":"sh/qd4vmtwr","slide":1,"text":"Explainable AI for Telecom Churn\nPrediction and Retention Personas","textPreview":"Explainable AI for Telecom Churn | Prediction and Retention Personas","textChars":66,"textLines":2,"bbox":[72,68,600,108]}
+{"kind":"textbox","id":"sh/fyxobm58","slide":1,"text":"Random Forest, SHAP, and SHAP theme clustering turn churn scores into retention actions.","textPreview":"Random Forest, SHAP, and SHAP theme clustering turn churn scores into retention actions.","textChars":88,"textLines":1,"bbox":[72,190,520,44]}
+{"kind":"textbox","id":"sh/8v6psfil","slide":1,"text":"Vũ Trung Kiên  •  IS6502.CH201  •  Final paper and presentation","textPreview":"Vũ Trung Kiên  •  IS6502.CH201  •  Final paper and presentation","textChars":63,"textLines":1,"bbox":[72,252,520,34]}
+{"kind":"shape","id":"sh/xczed8v6","slide":1,"bbox":[72,430,154,104]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":1,"text":"7,043","textPreview":"7,043","textChars":5,"textLines":1,"bbox":[90,446,118,34]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":1,"text":"customers","textPreview":"customers","textChars":9,"textLines":1,"bbox":[90,480,118,24]}
+{"kind":"textbox","id":"sh/8z25kb6x","slide":1,"text":"Telco dataset","textPreview":"Telco dataset","textChars":13,"textLines":1,"bbox":[90,500,118,22]}
+{"kind":"shape","id":"sh/1gvy90je","slide":1,"bbox":[248,430,154,104]}
+{"kind":"textbox","id":"sh/pg3ex0nu","slide":1,"text":"8","textPreview":"8","textChars":1,"textLines":1,"bbox":[266,446,118,34]}
+{"kind":"textbox","id":"sh/wval87ed","slide":1,"text":"models","textPreview":"models","textChars":6,"textLines":1,"bbox":[266,480,118,24]}
+{"kind":"textbox","id":"sh/7adsji5s","slide":1,"text":"compared","textPreview":"compared","textChars":8,"textLines":1,"bbox":[266,500,118,22]}
+{"kind":"shape","id":"sh/epkzupwb","slide":1,"bbox":[424,430,154,104]}
+{"kind":"textbox","id":"sh/psfil0rq","slide":1,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[442,446,118,34]}
+{"kind":"textbox","id":"sh/w7mp0bi9","slide":1,"text":"personas","textPreview":"personas","textChars":8,"textLines":1,"bbox":[442,480,118,24]}
+{"kind":"textbox","id":"sh/7mp0bi9s","slide":1,"text":"retention groups","textPreview":"retention groups","textChars":16,"textLines":1,"bbox":[442,500,118,22]}
+{"kind":"shape","id":"sh/e1w7mp0b","slide":1,"bbox":[650,60,560,560]}
+{"kind":"textbox","id":"sh/l0rqd4vm","slide":1,"text":"Global SHAP evidence","textPreview":"Global SHAP evidence","textChars":20,"textLines":1,"bbox":[678,82,180,24]}
+{"kind":"textbox","id":"sh/svu9knih","slide":1,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[1236,686,20,16]}
+{"kind":"image","id":"im/jm1cfa9w","slide":1,"name":"","geometry":"roundRect","alt":"SHAP summary","bbox":[678,114,504,472]}
+{"kind":"notes","id":"nt/vk88q1","slide":1,"text":""}
+{"kind":"slide","id":"sl/tmqtpm","slide":2,"title":"The pipeline links prediction, explanation, and action","textShapes":23}
+{"kind":"shape","id":"sh/l87ed8ba","slide":2,"bbox":[72,38,34,6]}
+{"kind":"textbox","id":"sh/ahoza1gv","slide":2,"text":"The pipeline links prediction, explanation, and action","textPreview":"The pipeline links prediction, explanation, and action","textChars":54,"textLines":1,"bbox":[72,68,840,82]}
+{"kind":"textbox","id":"sh/32lszqtc","slide":2,"text":"The goal is not only to score churn risk, but to understand why customers leave and what retention offer fits each group.","textPreview":"The goal is not only to score churn risk, but to understand why customers leave and what retention offer fits each group.","textChars":121,"textLines":1,"bbox":[72,138,760,34]}
+{"kind":"shape","id":"sh/szqtcj6t","slide":2,"name":"step-1","bbox":[72,186,360,148]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":2,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[90,200,64,58]}
+{"kind":"textbox","id":"sh/at47y1kr","slide":2,"text":"Predict","textPreview":"Predict","textChars":7,"textLines":1,"bbox":[90,242,324,30]}
+{"kind":"textbox","id":"sh/3ex0nuxc","slide":2,"text":"Compare multiple models on the same Telco churn split and keep the best-performing benchmark in view.","textPreview":"Compare multiple models on the same Telco churn split and keep the best-performing benchmark in view.","textChars":101,"textLines":1,"bbox":[90,280,324,40]}
+{"kind":"shape","id":"sh/w3m94fu1","slide":2,"name":"step-2","bbox":[72,350,360,148]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[90,364,64,58]}
+{"kind":"textbox","id":"sh/9knih4by","slide":2,"text":"Explain","textPreview":"Explain","textChars":7,"textLines":1,"bbox":[90,406,324,30]}
+{"kind":"textbox","id":"sh/kzupwb2h","slide":2,"text":"Use SHAP to rank the strongest churn drivers and interpret them in business terms.","textPreview":"Use SHAP to rank the strongest churn drivers and interpret them in business terms.","textChars":82,"textLines":1,"bbox":[90,444,324,40]}
+{"kind":"shape","id":"sh/re1w7mp0","slide":2,"name":"step-3","bbox":[72,514,360,148]}
+{"kind":"textbox","id":"sh/2t83itgf","slide":2,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[90,528,64,58]}
+{"kind":"textbox","id":"sh/9w3m94fu","slide":2,"text":"Act","textPreview":"Act","textChars":3,"textLines":1,"bbox":[90,570,324,30]}
+{"kind":"textbox","id":"sh/kb6xkf6d","slide":2,"text":"Cluster the SHAP themes into personas and turn them into specific retention actions.","textPreview":"Cluster the SHAP themes into personas and turn them into specific retention actions.","textChars":84,"textLines":1,"bbox":[90,608,324,40]}
+{"kind":"shape","id":"sh/rqd4vmtw","slide":2,"bbox":[474,196,220,108]}
+{"kind":"textbox","id":"sh/25kb6xkf","slide":2,"text":"26.54%","textPreview":"26.54%","textChars":6,"textLines":1,"bbox":[492,212,184,34]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":2,"text":"churn rate","textPreview":"churn rate","textChars":10,"textLines":1,"bbox":[492,246,184,24]}
+{"kind":"textbox","id":"sh/kjm1cfa9","slide":2,"text":"1,869 of 7,043 customers","textPreview":"1,869 of 7,043 customers","textChars":24,"textLines":1,"bbox":[492,266,184,22]}
+{"kind":"shape","id":"sh/wfyxobm5","slide":2,"bbox":[714,196,220,108]}
+{"kind":"textbox","id":"sh/l0rqd4vm","slide":2,"text":"80/20","textPreview":"80/20","textChars":5,"textLines":1,"bbox":[732,212,184,34]}
+{"kind":"textbox","id":"sh/ed8bat47","slide":2,"text":"train/test split","textPreview":"train/test split","textChars":16,"textLines":1,"bbox":[732,246,184,24]}
+{"kind":"textbox","id":"sh/7u54zido","slide":2,"text":"stratified by churn","textPreview":"stratified by churn","textChars":19,"textLines":1,"bbox":[732,266,184,22]}
+{"kind":"shape","id":"sh/wra5gbq1","slide":2,"bbox":[954,196,254,108]}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":2,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[972,212,218,34]}
+{"kind":"textbox","id":"sh/eloj2t83","slide":2,"text":"persona clusters","textPreview":"persona clusters","textChars":16,"textLines":1,"bbox":[972,246,218,24]}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":2,"text":"theme-level SHAP space","textPreview":"theme-level SHAP space","textChars":22,"textLines":1,"bbox":[972,266,218,22]}
+{"kind":"shape","id":"sh/wval87ed","slide":2,"bbox":[474,336,734,326]}
+{"kind":"textbox","id":"sh/pg3ex0nu","slide":2,"text":"Why the workflow matters","textPreview":"Why the workflow matters","textChars":24,"textLines":1,"bbox":[506,366,668,78]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":2,"text":"A churn score alone is not enough for retention planning. The paper is designed to answer three questions in sequence: who is likely to leave, what drives that decision, and which offer should be used for that customer group.","textPreview":"A churn score alone is not enough for retention planning. The paper is designed to answer three questions in sequence: who is likely to l...","textChars":225,"textLines":1,"bbox":[506,418,650,174]}
+{"kind":"textbox","id":"sh/m1cfa9w3","slide":2,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[1236,686,20,16]}
+{"kind":"notes","id":"nt/tmqtpm","slide":2,"text":""}
+{"kind":"slide","id":"sl/1bzg37","slide":3,"title":"Logistic Regression led the benchmark,","textShapes":27}
+{"kind":"shape","id":"sh/gr2p8nqx","slide":3,"bbox":[72,38,34,6]}
+{"kind":"textbox","id":"sh/r65wjudg","slide":3,"text":"Logistic Regression led the benchmark,\nbut Random Forest stayed in the paper for explainability","textPreview":"Logistic Regression led the benchmark, | but Random Forest stayed in the paper for explainability","textChars":95,"textLines":2,"bbox":[72,68,980,92]}
+{"kind":"textbox","id":"sh/ylc7u54z","slide":3,"text":"The numerical gap is small enough that interpretability becomes the deciding factor for the final pipeline.","textPreview":"The numerical gap is small enough that interpretability becomes the deciding factor for the final pipeline.","textChars":107,"textLines":1,"bbox":[72,150,740,34]}
+{"kind":"shape","id":"sh/5o7qpg3e","slide":3,"bbox":[72,172,708,458]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":3,"text":"Accuracy benchmark","textPreview":"Accuracy benchmark","textChars":18,"textLines":1,"bbox":[92,186,180,20]}
+{"kind":"textbox","id":"sh/nih4byhg","slide":3,"text":"LogReg","textPreview":"LogReg","textChars":6,"textLines":1,"bbox":[100,220,112,28]}
+{"kind":"shape","id":"sh/yxobm58z","slide":3,"bbox":[224,224,470,18]}
+{"kind":"shape","id":"sh/9s36hcrm","slide":3,"bbox":[224,224,470,18]}
+{"kind":"textbox","id":"sh/g7adsji5","slide":3,"text":"0.7903","textPreview":"0.7903","textChars":6,"textLines":1,"bbox":[704,220,72,28]}
+{"kind":"textbox","id":"sh/y1kre1w7","slide":3,"text":"XGB","textPreview":"XGB","textChars":3,"textLines":1,"bbox":[100,264,112,28]}
+{"kind":"shape","id":"sh/rmhk3q5o","slide":3,"bbox":[224,268,470,18]}
+{"kind":"shape","id":"sh/g7adsji5","slide":3,"bbox":[224,268,467,18]}
+{"kind":"textbox","id":"sh/9s36hcrm","slide":3,"text":"0.7854","textPreview":"0.7854","textChars":6,"textLines":1,"bbox":[704,264,72,28]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":3,"text":"RF","textPreview":"RF","textChars":2,"textLines":1,"bbox":[100,308,112,28]}
+{"kind":"shape","id":"sh/rytsvu9k","slide":3,"bbox":[224,312,470,18]}
+{"kind":"shape","id":"sh/gfmlkjm1","slide":3,"bbox":[224,312,467,18]}
+{"kind":"textbox","id":"sh/90je9cvi","slide":3,"text":"0.7846","textPreview":"0.7846","textChars":6,"textLines":1,"bbox":[704,308,72,28]}
+{"kind":"textbox","id":"sh/ylc7u54z","slide":3,"text":"Ada","textPreview":"Ada","textChars":3,"textLines":1,"bbox":[100,352,112,28]}
+{"kind":"shape","id":"sh/r65wjudg","slide":3,"bbox":[224,356,470,18]}
+{"kind":"shape","id":"sh/fa9w3m94","slide":3,"bbox":[224,356,466,18]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":3,"text":"0.7832","textPreview":"0.7832","textChars":6,"textLines":1,"bbox":[704,352,72,28]}
+{"kind":"textbox","id":"sh/xczed8v6","slide":3,"text":"SVM","textPreview":"SVM","textChars":3,"textLines":1,"bbox":[100,396,112,28]}
+{"kind":"shape","id":"sh/8v6psfil","slide":3,"bbox":[224,400,470,18]}
+{"kind":"shape","id":"sh/fyxobm58","slide":3,"bbox":[224,400,466,18]}
+{"kind":"textbox","id":"sh/qd4vmtwr","slide":3,"text":"0.7839","textPreview":"0.7839","textChars":6,"textLines":1,"bbox":[704,396,72,28]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":3,"text":"KNN","textPreview":"KNN","textChars":3,"textLines":1,"bbox":[100,440,112,28]}
+{"kind":"shape","id":"sh/8jqh0fep","slide":3,"bbox":[224,444,470,18]}
+{"kind":"shape","id":"sh/fmlkjm1c","slide":3,"bbox":[224,444,458,18]}
+{"kind":"textbox","id":"sh/q1orytsv","slide":3,"text":"0.7697","textPreview":"0.7697","textChars":6,"textLines":1,"bbox":[704,440,72,28]}
+{"kind":"textbox","id":"sh/kjm1cfa9","slide":3,"text":"NB","textPreview":"NB","textChars":2,"textLines":1,"bbox":[100,484,112,28]}
+{"kind":"shape","id":"sh/94fu18jq","slide":3,"bbox":[224,488,470,18]}
+{"kind":"shape","id":"sh/2hwfyxob","slide":3,"bbox":[224,488,450,18]}
+{"kind":"textbox","id":"sh/r2p8nqxs","slide":3,"text":"0.7562","textPreview":"0.7562","textChars":6,"textLines":1,"bbox":[704,484,72,28]}
+{"kind":"textbox","id":"sh/gvy90je9","slide":3,"text":"DT","textPreview":"DT","textChars":2,"textLines":1,"bbox":[100,528,112,28]}
+{"kind":"shape","id":"sh/9gr2p8nq","slide":3,"bbox":[224,532,470,18]}
+{"kind":"shape","id":"sh/2p8nqxs7","slide":3,"bbox":[224,532,432,18]}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":3,"text":"0.7257","textPreview":"0.7257","textChars":6,"textLines":1,"bbox":[704,528,72,28]}
+{"kind":"shape","id":"sh/kzupwb2h","slide":3,"bbox":[832,172,376,458]}
+{"kind":"textbox","id":"sh/9knih4by","slide":3,"text":"What the benchmark says","textPreview":"What the benchmark says","textChars":23,"textLines":1,"bbox":[858,198,300,30]}
+{"kind":"shape","id":"sh/lc7u54zi","slide":3,"bbox":[858,248,322,96]}
+{"kind":"textbox","id":"sh/wra5gbq1","slide":3,"text":"Best accuracy and AUC","textPreview":"Best accuracy and AUC","textChars":21,"textLines":1,"bbox":[876,262,286,28]}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":3,"text":"Logistic Regression reached 0.7903 accuracy and 0.8359 AUC.","textPreview":"Logistic Regression reached 0.7903 accuracy and 0.8359 AUC.","textChars":59,"textLines":1,"bbox":[876,294,286,38]}
+{"kind":"shape","id":"sh/eloj2t83","slide":3,"bbox":[858,358,322,96]}
+{"kind":"textbox","id":"sh/l0rqd4vm","slide":3,"text":"Selected base model","textPreview":"Selected base model","textChars":19,"textLines":1,"bbox":[876,372,286,28]}
+{"kind":"textbox","id":"sh/wfyxobm5","slide":3,"text":"Random Forest reached 0.7846 accuracy and was kept because TreeExplainer works naturally on it.","textPreview":"Random Forest reached 0.7846 accuracy and was kept because TreeExplainer works naturally on it.","textChars":95,"textLines":1,"bbox":[876,404,286,38]}
+{"kind":"shape","id":"sh/7u54zido","slide":3,"bbox":[858,468,322,114]}
+{"kind":"textbox","id":"sh/ed8bat47","slide":3,"text":"Practical reading","textPreview":"Practical reading","textChars":17,"textLines":1,"bbox":[876,482,286,28]}
+{"kind":"textbox","id":"sh/psfil0rq","slide":3,"text":"The benchmark is close enough that the paper favors the model that produces the most useful explanation layer.","textPreview":"The benchmark is close enough that the paper favors the model that produces the most useful explanation layer.","textChars":110,"textLines":1,"bbox":[876,514,286,56]}
+{"kind":"textbox","id":"sh/w7mp0bi9","slide":3,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[1236,686,20,16]}
+{"kind":"notes","id":"nt/1bzg37","slide":3,"text":""}
+{"kind":"slide","id":"sl/lhk0lx","slide":4,"title":"Contract is the strongest signal because it captures customer commitment","textShapes":9}
+{"kind":"shape","id":"sh/3ylc7u54","slide":4,"bbox":[72,38,34,6]}
+{"kind":"textbox","id":"sh/sji5snel","slide":4,"text":"Contract is the strongest signal because it captures customer commitment","textPreview":"Contract is the strongest signal because it captures customer commitment","textChars":72,"textLines":1,"bbox":[72,68,980,58]}
+{"kind":"textbox","id":"sh/h4byhgn2","slide":4,"text":"SHAP shows that commitment and service quality dominate the churn decision, with contract type leading the ranking.","textPreview":"SHAP shows that commitment and service quality dominate the churn decision, with contract type leading the ranking.","textChars":115,"textLines":1,"bbox":[72,124,760,28]}
+{"kind":"shape","id":"sh/a5gbq1or","slide":4,"bbox":[72,172,702,468]}
+{"kind":"shape","id":"sh/s72x4nap","slide":4,"bbox":[814,172,394,468]}
+{"kind":"shape","id":"sh/lszqtcj6","slide":4,"bbox":[842,198,338,108]}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":4,"text":"Top feature","textPreview":"Top feature","textChars":11,"textLines":1,"bbox":[860,212,302,28]}
+{"kind":"textbox","id":"sh/zidonyd0","slide":4,"text":"Contract is the most important feature in the paper, with mean |SHAP| of 0.0794.","textPreview":"Contract is the most important feature in the paper, with mean |SHAP| of 0.0794.","textChars":80,"textLines":1,"bbox":[860,244,302,50]}
+{"kind":"shape","id":"sh/re1w7mp0","slide":4,"bbox":[842,320,338,122]}
+{"kind":"textbox","id":"sh/2t83itgf","slide":4,"text":"Retention meaning","textPreview":"Retention meaning","textChars":17,"textLines":1,"bbox":[860,334,302,28]}
+{"kind":"textbox","id":"sh/9knih4by","slide":4,"text":"Month-to-month customers churn at 0.427, versus 0.113 for one-year plans and 0.028 for two-year plans.","textPreview":"Month-to-month customers churn at 0.427, versus 0.113 for one-year plans and 0.028 for two-year plans.","textChars":102,"textLines":1,"bbox":[860,366,302,64]}
+{"kind":"shape","id":"sh/kzupwb2h","slide":4,"bbox":[842,456,338,156]}
+{"kind":"textbox","id":"sh/rqd4vmtw","slide":4,"text":"Secondary signals","textPreview":"Secondary signals","textChars":17,"textLines":1,"bbox":[860,470,302,28]}
+{"kind":"textbox","id":"sh/25kb6xkf","slide":4,"text":"OnlineSecurity, TechSupport, TotalCharges, and tenure fill out the rest of the top five. Together they describe commitment, service quality, and price pressure.","textPreview":"OnlineSecurity, TechSupport, TotalCharges, and tenure fill out the rest of the top five. Together they describe commitment, service quali...","textChars":160,"textLines":1,"bbox":[860,502,302,98]}
+{"kind":"textbox","id":"sh/9w3m94fu","slide":4,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[1236,686,20,16]}
+{"kind":"image","id":"im/a5gbq1or","slide":4,"name":"","geometry":"roundRect","alt":"SHAP summary","bbox":[94,194,658,424]}
+{"kind":"notes","id":"nt/lhk0lx","slide":4,"text":""}
+{"kind":"slide","id":"sl/2hvhlg","slide":5,"title":"Grouping SHAP by theme gives the cleanest cluster structure","textShapes":15}
+{"kind":"shape","id":"sh/1cfa9w3m","slide":5,"bbox":[72,38,34,6]}
+{"kind":"textbox","id":"sh/ulwval87","slide":5,"text":"Grouping SHAP by theme gives the cleanest cluster structure","textPreview":"Grouping SHAP by theme gives the cleanest cluster structure","textChars":59,"textLines":1,"bbox":[72,68,940,58]}
+{"kind":"textbox","id":"sh/j6tovaho","slide":5,"text":"Theme aggregation improves separability because it reduces overlap among correlated drivers such as Contract and tenure.","textPreview":"Theme aggregation improves separability because it reduces overlap among correlated drivers such as Contract and tenure.","textChars":120,"textLines":1,"bbox":[72,124,760,28]}
+{"kind":"shape","id":"sh/c3ylc7u5","slide":5,"bbox":[72,172,672,468]}
+{"kind":"shape","id":"sh/uxc3ylc7","slide":5,"bbox":[756,172,452,468]}
+{"kind":"textbox","id":"sh/ji5snelo","slide":5,"text":"Ablation result","textPreview":"Ablation result","textChars":15,"textLines":1,"bbox":[784,196,320,28]}
+{"kind":"shape","id":"sh/8bat47y1","slide":5,"bbox":[784,244,180,112]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":5,"text":"0.3002","textPreview":"0.3002","textChars":6,"textLines":1,"bbox":[802,260,144,34]}
+{"kind":"textbox","id":"sh/d0z61032","slide":5,"text":"raw_feature","textPreview":"raw_feature","textChars":11,"textLines":1,"bbox":[802,294,144,24]}
+{"kind":"textbox","id":"sh/kf6dcbul","slide":5,"text":"best silhouette","textPreview":"best silhouette","textChars":15,"textLines":1,"bbox":[802,314,144,22]}
+{"kind":"shape","id":"sh/vu9knih4","slide":5,"bbox":[988,244,180,112]}
+{"kind":"textbox","id":"sh/29gr2p8n","slide":5,"text":"0.3073","textPreview":"0.3073","textChars":6,"textLines":1,"bbox":[1006,260,144,34]}
+{"kind":"textbox","id":"sh/d8bat47y","slide":5,"text":"shap_value","textPreview":"shap_value","textChars":10,"textLines":1,"bbox":[1006,294,144,24]}
+{"kind":"textbox","id":"sh/knih4byh","slide":5,"text":"+2.36% vs raw","textPreview":"+2.36% vs raw","textChars":13,"textLines":1,"bbox":[1006,314,144,22]}
+{"kind":"shape","id":"sh/v6psfil0","slide":5,"bbox":[784,372,384,112]}
+{"kind":"textbox","id":"sh/2lszqtcj","slide":5,"text":"0.3157","textPreview":"0.3157","textChars":6,"textLines":1,"bbox":[802,388,348,34]}
+{"kind":"textbox","id":"sh/dcbulwva","slide":5,"text":"shap_theme","textPreview":"shap_theme","textChars":10,"textLines":1,"bbox":[802,422,348,24]}
+{"kind":"textbox","id":"sh/kre1w7mp","slide":5,"text":"+5.16% vs raw_feature","textPreview":"+5.16% vs raw_feature","textChars":21,"textLines":1,"bbox":[802,442,348,22]}
+{"kind":"shape","id":"sh/kzupwb2h","slide":5,"bbox":[784,502,384,108]}
+{"kind":"textbox","id":"sh/9knih4by","slide":5,"text":"Why it matters","textPreview":"Why it matters","textChars":14,"textLines":1,"bbox":[802,516,348,28]}
+{"kind":"textbox","id":"sh/2t83itgf","slide":5,"text":"The best clustering space is also the one that gives the most interpretable business themes, so the paper uses shap_theme as the official persona space.","textPreview":"The best clustering space is also the one that gives the most interpretable business themes, so the paper uses shap_theme as the official...","textChars":152,"textLines":1,"bbox":[802,548,348,50]}
+{"kind":"textbox","id":"sh/re1w7mp0","slide":5,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[1236,686,20,16]}
+{"kind":"image","id":"im/cbulwval","slide":5,"name":"","geometry":"roundRect","alt":"Ablation study","bbox":[90,190,636,432]}
+{"kind":"notes","id":"nt/2hvhlg","slide":5,"text":""}
+{"kind":"slide","id":"sl/r36tf4","slide":6,"title":"Five personas translate the SHAP themes into retention actions","textShapes":34}
+{"kind":"shape","id":"sh/z25kb6xk","slide":6,"bbox":[72,38,34,6]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":6,"text":"Five personas translate the SHAP themes into retention actions","textPreview":"Five personas translate the SHAP themes into retention actions","textChars":62,"textLines":1,"bbox":[72,68,980,82]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":6,"text":"The clusters are statistically separable and each one maps to a clear business response.","textPreview":"The clusters are statistically separable and each one maps to a clear business response.","textChars":88,"textLines":1,"bbox":[72,138,780,34]}
+{"kind":"shape","id":"sh/6tovahoz","slide":6,"bbox":[72,178,352,174]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":6,"text":"Persona 0","textPreview":"Persona 0","textChars":9,"textLines":1,"bbox":[90,192,120,18]}
+{"kind":"textbox","id":"sh/ovahoza1","slide":6,"text":"Service Quality","textPreview":"Service Quality","textChars":15,"textLines":1,"bbox":[90,212,180,24]}
+{"kind":"textbox","id":"sh/dg7adsji","slide":6,"text":"230","textPreview":"230","textChars":3,"textLines":1,"bbox":[90,242,90,26]}
+{"kind":"textbox","id":"sh/61032lsz","slide":6,"text":"customers","textPreview":"customers","textChars":9,"textLines":1,"bbox":[176,248,116,18]}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":6,"text":"Distinctive feature: OnlineSecurity","textPreview":"Distinctive feature: OnlineSecurity","textChars":35,"textLines":1,"bbox":[90,280,300,18]}
+{"kind":"textbox","id":"sh/b2hwfyxo","slide":6,"text":"Strengthen technical support, improve network quality, and provide post-sales care.","textPreview":"Strengthen technical support, improve network quality, and provide post-sales care.","textChars":83,"textLines":1,"bbox":[90,302,300,40]}
+{"kind":"shape","id":"sh/mhk3q5o7","slide":6,"bbox":[444,178,352,174]}
+{"kind":"textbox","id":"sh/t83itgfm","slide":6,"text":"Persona 1","textPreview":"Persona 1","textChars":9,"textLines":1,"bbox":[462,192,120,18]}
+{"kind":"textbox","id":"sh/4nap4r65","slide":6,"text":"Commitment","textPreview":"Commitment","textChars":10,"textLines":1,"bbox":[462,212,180,24]}
+{"kind":"textbox","id":"sh/bq1oryts","slide":6,"text":"582","textPreview":"582","textChars":3,"textLines":1,"bbox":[462,242,90,26]}
+{"kind":"textbox","id":"sh/m58z25kb","slide":6,"text":"customers","textPreview":"customers","textChars":9,"textLines":1,"bbox":[548,248,116,18]}
+{"kind":"textbox","id":"sh/twra5gbq","slide":6,"text":"Distinctive feature: Contract","textPreview":"Distinctive feature: Contract","textChars":29,"textLines":1,"bbox":[462,280,300,18]}
+{"kind":"textbox","id":"sh/4byhgn29","slide":6,"text":"Offer long-term contract incentives and staged retention programs.","textPreview":"Offer long-term contract incentives and staged retention programs.","textChars":66,"textLines":1,"bbox":[462,302,300,40]}
+{"kind":"shape","id":"sh/bm58z25k","slide":6,"bbox":[816,178,352,174]}
+{"kind":"textbox","id":"sh/m1cfa9w3","slide":6,"text":"Persona 2","textPreview":"Persona 2","textChars":9,"textLines":1,"bbox":[834,192,120,18]}
+{"kind":"textbox","id":"sh/q5o7qpg3","slide":6,"text":"Service Quality","textPreview":"Service Quality","textChars":15,"textLines":1,"bbox":[834,212,180,24]}
+{"kind":"textbox","id":"sh/jqh0fepk","slide":6,"text":"237","textPreview":"237","textChars":3,"textLines":1,"bbox":[834,242,90,26]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":6,"text":"customers","textPreview":"customers","textChars":9,"textLines":1,"bbox":[920,248,116,18]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":6,"text":"Distinctive feature: InternetService","textPreview":"Distinctive feature: InternetService","textChars":36,"textLines":1,"bbox":[834,280,300,18]}
+{"kind":"textbox","id":"sh/qh0fepkz","slide":6,"text":"Strengthen technical support, improve network quality, and provide post-sales care.","textPreview":"Strengthen technical support, improve network quality, and provide post-sales care.","textChars":83,"textLines":1,"bbox":[834,302,300,40]}
+{"kind":"shape","id":"sh/j2t83itg","slide":6,"bbox":[72,376,550,186]}
+{"kind":"textbox","id":"sh/8nqxs72x","slide":6,"text":"Persona 3","textPreview":"Persona 3","textChars":9,"textLines":1,"bbox":[90,390,120,18]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":6,"text":"Lifestyle Bundle","textPreview":"Lifestyle Bundle","textChars":16,"textLines":1,"bbox":[90,410,260,24]}
+{"kind":"textbox","id":"sh/ulwval87","slide":6,"text":"225","textPreview":"225","textChars":3,"textLines":1,"bbox":[90,440,90,26]}
+{"kind":"textbox","id":"sh/j6tovaho","slide":6,"text":"customers","textPreview":"customers","textChars":9,"textLines":1,"bbox":[176,446,116,18]}
+{"kind":"textbox","id":"sh/pwb2hwfy","slide":6,"text":"Distinctive feature: -","textPreview":"Distinctive feature: -","textChars":22,"textLines":1,"bbox":[90,478,500,18]}
+{"kind":"textbox","id":"sh/0bi9s36h","slide":6,"text":"Offer discounted bundles for streaming and multiple-line services.","textPreview":"Offer discounted bundles for streaming and multiple-line services.","textChars":66,"textLines":1,"bbox":[90,502,500,42]}
+{"kind":"shape","id":"sh/7qpg3ex0","slide":6,"bbox":[642,376,550,186]}
+{"kind":"textbox","id":"sh/i5sneloj","slide":6,"text":"Persona 4","textPreview":"Persona 4","textChars":9,"textLines":1,"bbox":[660,390,120,18]}
+{"kind":"textbox","id":"sh/p4r65wju","slide":6,"text":"Cost Pressure","textPreview":"Cost Pressure","textChars":13,"textLines":1,"bbox":[660,410,260,24]}
+{"kind":"textbox","id":"sh/wjudg7ad","slide":6,"text":"133","textPreview":"133","textChars":3,"textLines":1,"bbox":[660,440,90,26]}
+{"kind":"textbox","id":"sh/7y1kre1w","slide":6,"text":"customers","textPreview":"customers","textChars":9,"textLines":1,"bbox":[746,446,116,18]}
+{"kind":"textbox","id":"sh/ed8v6psf","slide":6,"text":"Distinctive feature: TotalCharges","textPreview":"Distinctive feature: TotalCharges","textChars":33,"textLines":1,"bbox":[660,478,500,18]}
+{"kind":"textbox","id":"sh/p8nqxs72","slide":6,"text":"Provide fee reductions, vouchers, or flexible plans.","textPreview":"Provide fee reductions, vouchers, or flexible plans.","textChars":52,"textLines":1,"bbox":[660,502,500,42]}
+{"kind":"textbox","id":"sh/0nuxc3yl","slide":6,"text":"Kruskal-Wallis testing shows that all four themes differ significantly across the personas.","textPreview":"Kruskal-Wallis testing shows that all four themes differ significantly across the personas.","textChars":91,"textLines":1,"bbox":[72,586,1100,20]}
+{"kind":"textbox","id":"sh/4zidonyd","slide":6,"text":"6","textPreview":"6","textChars":1,"textLines":1,"bbox":[1236,686,20,16]}
+{"kind":"notes","id":"nt/r36tf4","slide":6,"text":""}
+{"kind":"slide","id":"sl/ud9ltw","slide":7,"title":"The paper turns churn prediction into a retention playbook","textShapes":18}
+{"kind":"shape","id":"sh/lszqtcj6","slide":7,"bbox":[72,38,34,6]}
+{"kind":"textbox","id":"sh/a5gbq1or","slide":7,"text":"The paper turns churn prediction into a retention playbook","textPreview":"The paper turns churn prediction into a retention playbook","textChars":58,"textLines":1,"bbox":[72,68,1020,58]}
+{"kind":"textbox","id":"sh/3m94fu18","slide":7,"text":"Prediction, explanation, and action are now one pipeline instead of three disconnected outputs.","textPreview":"Prediction, explanation, and action are now one pipeline instead of three disconnected outputs.","textChars":95,"textLines":1,"bbox":[72,124,900,28]}
+{"kind":"shape","id":"sh/sji5snel","slide":7,"bbox":[72,172,566,424]}
+{"kind":"textbox","id":"sh/h4byhgn2","slide":7,"text":"What the paper shows","textPreview":"What the paper shows","textChars":20,"textLines":1,"bbox":[92,194,260,28]}
+{"kind":"shape","id":"sh/adsji5sn","slide":7,"bbox":[92,236,526,88]}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":7,"text":"1. Commitment matters most","textPreview":"1. Commitment matters most","textChars":26,"textLines":1,"bbox":[110,250,490,28]}
+{"kind":"textbox","id":"sh/svu9knih","slide":7,"text":"Contract is the strongest SHAP driver, and month-to-month customers churn much more often than longer-term customers.","textPreview":"Contract is the strongest SHAP driver, and month-to-month customers churn much more often than longer-term customers.","textChars":117,"textLines":1,"bbox":[110,282,490,30]}
+{"kind":"shape","id":"sh/hgn29gr2","slide":7,"bbox":[92,334,526,88]}
+{"kind":"textbox","id":"sh/tgfmlkjm","slide":7,"text":"2. Service quality and price pressure matter next","textPreview":"2. Service quality and price pressure matter next","textChars":49,"textLines":1,"bbox":[110,348,490,28]}
+{"kind":"textbox","id":"sh/4vmtwra5","slide":7,"text":"OnlineSecurity, TechSupport, TotalCharges, and tenure complete the main explanation story.","textPreview":"OnlineSecurity, TechSupport, TotalCharges, and tenure complete the main explanation story.","textChars":90,"textLines":1,"bbox":[110,380,490,30]}
+{"kind":"shape","id":"sh/bat47y1k","slide":7,"bbox":[92,432,526,142]}
+{"kind":"textbox","id":"sh/mp0bi9s3","slide":7,"text":"3. Themes produce action-ready personas","textPreview":"3. Themes produce action-ready personas","textChars":39,"textLines":1,"bbox":[110,446,490,28]}
+{"kind":"textbox","id":"sh/tsvu9kni","slide":7,"text":"Theme-level SHAP clustering gives five statistically distinct groups that can be matched to retention offers.","textPreview":"Theme-level SHAP clustering gives five statistically distinct groups that can be matched to retention offers.","textChars":109,"textLines":1,"bbox":[110,478,490,84]}
+{"kind":"shape","id":"sh/47y1kre1","slide":7,"bbox":[652,172,556,424]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":7,"text":"How to use it next","textPreview":"How to use it next","textChars":18,"textLines":1,"bbox":[674,194,280,28]}
+{"kind":"shape","id":"sh/m1cfa9w3","slide":7,"bbox":[674,236,512,88]}
+{"kind":"textbox","id":"sh/twra5gbq","slide":7,"text":"Target the largest persona first","textPreview":"Target the largest persona first","textChars":32,"textLines":1,"bbox":[692,250,476,28]}
+{"kind":"textbox","id":"sh/4byhgn29","slide":7,"text":"The commitment-sensitive group is the biggest cluster, so contract incentives and staged retention should be the first business test.","textPreview":"The commitment-sensitive group is the biggest cluster, so contract incentives and staged retention should be the first business test.","textChars":133,"textLines":1,"bbox":[692,282,476,30]}
+{"kind":"shape","id":"sh/0je9cvix","slide":7,"bbox":[674,334,512,88]}
+{"kind":"textbox","id":"sh/t47y1kre","slide":7,"text":"Then tailor the service-quality groups","textPreview":"Then tailor the service-quality groups","textChars":38,"textLines":1,"bbox":[692,348,476,28]}
+{"kind":"textbox","id":"sh/idonyd0z","slide":7,"text":"Two separate personas point to service issues, so technical support and network improvement should be tested next.","textPreview":"Two separate personas point to service issues, so technical support and network improvement should be tested next.","textChars":114,"textLines":1,"bbox":[692,380,476,30]}
+{"kind":"shape","id":"sh/byhgn29g","slide":7,"bbox":[674,432,512,142]}
+{"kind":"textbox","id":"sh/0rqd4vmt","slide":7,"text":"Extend the dataset before the next iteration","textPreview":"Extend the dataset before the next iteration","textChars":44,"textLines":1,"bbox":[692,446,476,28]}
+{"kind":"textbox","id":"sh/tcj6tova","slide":7,"text":"More behavioral data would likely sharpen persona separation and make the action layer even more precise.","textPreview":"More behavioral data would likely sharpen persona separation and make the action layer even more precise.","textChars":105,"textLines":1,"bbox":[692,478,476,84]}
+{"kind":"textbox","id":"sh/il0rqd4v","slide":7,"text":"Final message: explain the churn signal before deciding what retention action to take.","textPreview":"Final message: explain the churn signal before deciding what retention action to take.","textChars":86,"textLines":1,"bbox":[72,624,1100,22]}
+{"kind":"textbox","id":"sh/b6xkf6dc","slide":7,"text":"7","textPreview":"7","textChars":1,"textLines":1,"bbox":[1236,686,20,16]}
+{"kind":"notes","id":"nt/ud9ltw","slide":7,"text":""}
