@@ -5,7 +5,7 @@ Dự án này xây dựng một pipeline giải thích được để dự đoá
 - Tên người làm: Vũ Trung Kiên
 - Mã học viên: 250104011
 - Chuyên đề: IS6502.CH201
-- Giảng viên hướng dẫn: Thầy Nguyễn Đình Thuận
+- Giảng viên hướng dẫn: Thầy Nguyễn Đình Thuân
 
 ## Tóm tắt ngắn
 Quy trình nghiên cứu gồm 3 tầng:
